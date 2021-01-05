@@ -5,6 +5,8 @@ import RadioSwitch from './components/RadioSwitch'
 import SwitchButton from './components/SwitchButton'
 import DropDownButton from './components/DropDownButton'
 import SwitchAndDropDown from './components/SwitchAndDropDown'
+import Slider from './components/Slider'
+import Layout from './components/Layout'
 
 function App() {
   const {
@@ -33,11 +35,6 @@ function App() {
       />
       <br></br>
       <br></br>
-
-      <br></br>
-      <DropDownButton></DropDownButton>
-      <br></br>
-      <br></br>
       <RadioSwitch
         node="deconz.0.Lights.1.on"
         targetStates={[true, false, 3, 4, 5]}
@@ -45,16 +42,35 @@ function App() {
         onChange={setNewNodeState}
       />
       <br></br>
-      <SwitchAndDropDown>
-        {' '}
+      <DropDownButton></DropDownButton>
+      <br></br>
+      <Layout layout="1fr 2fr">
         <RadioSwitch
           node="deconz.0.Lights.1.on"
-          targetStates={[true, false, 3, 4, 5]}
+          targetStates={[true, false]}
           currentState={getNodeState('deconz.0.Lights.1.on')}
           onChange={setNewNodeState}
         />
+        <RadioSwitch
+          node="deconz.0.Lights.1.on"
+          targetStates={[3, 4, 5]}
+          currentState={getNodeState('deconz.0.Lights.1.on')}
+          onChange={setNewNodeState}
+        />
+      </Layout>
+      <br></br>
+      <SwitchAndDropDown>
+        <SwitchButton
+          onClick={() => toogleNodeState('deconz.0.Lights.1.on')}
+          node="deconz.0.Lights.1.on"
+          value={getNodeState('deconz.0.Lights.1.on')}
+          children={<FaBeer></FaBeer>}
+        />
       </SwitchAndDropDown>
       <br></br>
+      <br></br>
+      <br></br>
+      <Slider></Slider>
     </div>
   )
 }

@@ -28,7 +28,7 @@ export default function RadioSwitch({
               checked={targetState === currentState}
             />
             <label htmlFor={'test' + index}>
-              <FaBeer />
+              <FaBeer size="15" />
             </label>
           </>
         )
@@ -42,20 +42,21 @@ export default function RadioSwitch({
 }
 
 const StyledForm = styled.div`
-  background-color: #ffa101;
+  background-color: var(--color-primary);
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  border-radius: 3px;
 
+  border-radius: 3px;
+  height: 50px;
   input[type='radio'] {
     display: none;
   }
 
   input[type='radio']:checked + label {
     color: white !important;
+    transition: color 0.3s ease-out;
   }
 
   label {

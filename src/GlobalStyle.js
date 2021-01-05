@@ -27,4 +27,14 @@ export default createGlobalStyle`
     font-size: 1em;
   }
 
+  :root{
+    /* Colors */
+    --color-primary: #ffad22;
+    --color-secondary: #535353;
+    --color-tertiary: #999999;
+    --color-bg: #F4F4F4;
+    --color-text: #8E8E8E;
+  }
+
+
 `

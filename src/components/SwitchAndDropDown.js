@@ -21,11 +21,11 @@ function SwitchAndDropDown({ children }) {
           <span>Gemütlich</span>
         </li>
         <li onClick={toggleMenue}>
-          <StyledColorIndicator bgColor="#ffa101" />
+          <StyledColorIndicator bgColor="var(--color-primary)" />
           <span>Normal I</span>
         </li>
         <li onClick={toggleMenue}>
-          <StyledColorIndicator bgColor="#ffa101" />
+          <StyledColorIndicator bgColor="var(--color-primary)" />
           <span>Normal II</span>
         </li>
         <li onClick={toggleMenue}>
@@ -37,7 +37,7 @@ function SwitchAndDropDown({ children }) {
   }
 
   return (
-    <StyledDropDown>
+    <StyledDropDown menuState={menuState}>
       {children}
       <StyledButton onMouseDown={toggleMenue} class="dropbtn">
         <BsThreeDotsVertical />
@@ -65,9 +65,8 @@ const StyledButton = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: 100%;
   border: 0 solid currentColor;
-
-  padding: 10px 25px;
   min-height: 50px;
   color: ${(props) => (props.value ? 'white' : '#424242a1')};
   width: 100%;
@@ -76,20 +75,22 @@ const StyledButton = styled.div`
   user-select: none;
 `
 const StyledDropDown = styled.div`
-  position: relative;
   display: grid;
   grid-template-columns: 6fr 1fr;
-
   border-radius: 3px;
-  background-color: #ffa101;
+  border-bottom-right-radius: ${(props) => (props.menuState ? '0px' : '3px')};
+  transition: border-bottom-right-radius 0.3s ease-out;
+  background-color: var(--color-primary);
+  position: relative;
+  height: 50px;
 `
 const StyledDropDownMenu = styled.ul`
   z-index: 100;
   list-style: none;
   padding: 0;
   margin: 0;
-  top: 50px;
   right: 0px;
+  top: 50px;
   display: flex;
   flex-direction: column;
   position: absolute;

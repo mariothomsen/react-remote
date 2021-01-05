@@ -13,17 +13,17 @@ function DropDownButton({}) {
 
   const DropDownMenu = () => {
     return (
-      <StyledDropDownMenu menuHeight={menuHeight}>
+      <StyledDropDownMenu>
         <li onClick={toggleMenue}>
           <StyledColorIndicator bgColor="#ffa10070" />
           <span>Gemütlich</span>
         </li>
         <li onClick={toggleMenue}>
-          <StyledColorIndicator bgColor="#ffa101" />
+          <StyledColorIndicator bgColor="#ffb332" />
           <span>Normal I</span>
         </li>
         <li onClick={toggleMenue}>
-          <StyledColorIndicator bgColor="#ffa101" />
+          <StyledColorIndicator bgColor="#ffb332" />
           <span>Normal II</span>
         </li>
         <li onClick={toggleMenue}>
@@ -36,7 +36,11 @@ function DropDownButton({}) {
 
   return (
     <StyledDropDown>
-      <StyledButton onMouseDown={toggleMenue} class="dropbtn">
+      <StyledButton
+        menuState={menuState}
+        onMouseDown={toggleMenue}
+        class="dropbtn"
+      >
         ...
       </StyledButton>
       {menuState && <DropDownMenu />}
@@ -62,11 +66,15 @@ const StyledButton = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-color: #ffa101;
+  background-color: var(--color-primary);
   border: 0 solid currentColor;
   border-radius: 3px;
+  border-bottom-right-radius: ${(props) => (props.menuState ? '0px' : '3px')};
+  border-bottom-left-radius: ${(props) => (props.menuState ? '0px' : '3px')};
+  transition: border-bottom-right-radius 0.3s ease-out,
+    border-bottom-left-radius 0.3s ease-out;
   padding: 10px 25px;
-  min-height: 50px;
+  height: 50px;
   color: ${(props) => (props.value ? 'white' : '#424242a1')};
   width: 100%;
   text-transform: uppercase;
