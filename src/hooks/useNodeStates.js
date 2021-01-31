@@ -49,7 +49,7 @@ export default function useNodeStates() {
 
   function loadApiNodeStates() {
     fetch(
-      'http://192.168.178.60:8087/get/system.adapter.admin.0.alive,deconz.0.Lights.1.on,admin.0.info.lastUpdateCheck'
+      'http://192.168.178.60:8087/get/system.adapter.admin.0.alive,deconz.0.Lights.1.on,deconz.0.Lights.21.on'
     )
       .then((res) => res.json())
       .then((data) => setNodeStates(buildNodeStates(data)))

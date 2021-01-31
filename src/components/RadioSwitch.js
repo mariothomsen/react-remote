@@ -10,29 +10,20 @@ export default function RadioSwitch({
   currentState,
   onChange,
 }) {
-  // console.log('node', node)
-  // console.log('targetStates', targetStates)
-  // console.log('currentState', currentState)
-
   return (
     <StyledForm>
-      {targetStates.map((targetState, index) => {
-        return (
-          <>
-            <input
-              id={'test' + index}
-              onChange={handleChange}
-              name="test"
-              type="radio"
-              value={targetState}
-              checked={targetState === currentState}
-            />
-            <label htmlFor={'test' + index}>
-              <FaBeer size="15" />
-            </label>
-          </>
-        )
-      })}
+      {targetStates.map((targetState, index) => (
+        <StyledDiv key={'input' + node + index}>
+          <input
+            id={node + index}
+            onChange={handleChange}
+            type="radio"
+            value={targetState.value}
+            checked={targetState.value === currentState}
+          />
+          <label htmlFor={node + index}>{targetState.icon}</label>
+        </StyledDiv>
+      ))}
     </StyledForm>
   )
 
@@ -41,12 +32,15 @@ export default function RadioSwitch({
   }
 }
 
+const StyledDiv = styled.div`
+  width: 100%;
+  height: 100%;
+`
+
 const StyledForm = styled.div`
   background-color: var(--color-primary);
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
 
   border-radius: 3px;
   height: 50px;
@@ -61,7 +55,7 @@ const StyledForm = styled.div`
 
   label {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

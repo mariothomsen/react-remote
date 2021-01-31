@@ -25,7 +25,7 @@ const StyledSlider = styled.input`
   height: 1px;
   background: #81612b;
   outline: none;
-
+  margin: 25px 0 10px -1px;
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;
 
@@ -41,7 +41,7 @@ const StyledSlider = styled.input`
     background: var(--color-primary);
     cursor: pointer;
     border-radius: 50%;
-    border: 5px solid black;
+    border: 5px solid #242424;
   }
 
   &::-moz-range-thumb {
