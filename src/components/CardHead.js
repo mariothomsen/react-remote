@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import useNodeStates from './../hooks/useNodeStates'
 
 export default CardHead
 
@@ -6,7 +7,15 @@ function CardHead({ headline, infos }) {
   return (
     <StyledDiv>
       <StyledHeadline>{headline}</StyledHeadline>
-      <StyledInfos>{infos}</StyledInfos>
+      <StyledInfos>
+        {infos &&
+          infos.map((info, index) => (
+            <StyledInfoText key={index}>
+              {info.value}
+              {info.unit}
+            </StyledInfoText>
+          ))}
+      </StyledInfos>
     </StyledDiv>
   )
 }
@@ -22,4 +31,11 @@ const StyledHeadline = styled.span`
 `
 const StyledInfos = styled.span`
   float: right;
+
+  > *:not(:last-child):after {
+    content: ' |';
+  }
+`
+const StyledInfoText = styled.span`
+  margin-left: 5px;
 `

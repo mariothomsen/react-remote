@@ -33,10 +33,22 @@ const StyledButton = styled.button`
   }
 
   &:active {
+    transform: scale(0.9);
+    transition: transform 0.3s ease-out;
+  }
+
+  &:focus {
   }
 `
 
 /*
+ transform: scale(0.9);
+    transition: transform 0.3s ease-out;
+      background-color: #a16e28;
+    transition: background-color 0.3s ease-out;
+    transform: scale(0.9);
+    transition: transform 0.1s ease-out;
+
     background-color: ${props => props.value ? "palevioletred" : "blue"};
 
 */

@@ -4,32 +4,23 @@ import { v4 as uuidv4 } from 'uuid'
 import { FaBeer } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 
-export default function RadioSwitch({
-  node,
-  targetStates,
-  currentState,
-  onChange,
-}) {
+export default function RadioSwitch({ node, options, currentValue, onChange }) {
   return (
     <StyledForm>
-      {targetStates.map((targetState, index) => (
+      {options.map((option, index) => (
         <StyledDiv key={'input' + node + index}>
           <input
             id={node + index}
-            onChange={handleChange}
+            onChange={onChange}
             type="radio"
-            value={targetState.value}
-            checked={targetState.value === currentState}
+            value={option.value}
+            checked={option.value === currentValue}
           />
-          <label htmlFor={node + index}>{targetState.icon}</label>
+          <label htmlFor={node + index}>{option.icon}</label>
         </StyledDiv>
       ))}
     </StyledForm>
   )
-
-  function handleChange(event) {
-    onChange(node, JSON.parse(event.target.value.toLowerCase()))
-  }
 }
 
 const StyledDiv = styled.div`
@@ -65,20 +56,3 @@ const StyledForm = styled.div`
     color: #424242a1;
   }
 `
-
-/*
-background-color: red;
-
-    <label htmlFor>
-        <input type="radio" name="test" value="1" />
-        <span>All</span>
-      </label>
-      <label>
-        <input type="radio" name="test" value="2" />
-        <span>Open</span>
-      </label>
-      <label>
-        <input type="radio" name="test" value="3" />
-        <span>Archived</span>
-      </label>
-*/

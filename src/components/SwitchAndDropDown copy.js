@@ -4,7 +4,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 
 export default SwitchAndDropDown
 
-function SwitchAndDropDown({ children, layout }) {
+function SwitchAndDropDown({ children, layout, overlay }) {
   const [menuState, setMenuState] = useState(false)
   const [menuHeight, setMenuHeight] = useState('30px')
 
@@ -14,7 +14,7 @@ function SwitchAndDropDown({ children, layout }) {
 
   const DropDownMenu = () => {
     return (
-      <StyledUl menuHeight={menuHeight}>
+      <StyledUl menuHeight={menuHeight} overlay={overlay}>
         <li onClick={toggleMenue}>
           <StyledColorIndicator bgColor="#ffa10070" />
           <span>Gemütlich</span>
@@ -118,7 +118,8 @@ const StyledUl = styled.ul`
   box-sizing: border-box;
 
   flot: right;
-  animation: b 0.3s;
+  animation: ${(props) => (props.overlay ? 'none' : 'b 0.3s')};
+
   font-size: 13px;
   color: white;
 

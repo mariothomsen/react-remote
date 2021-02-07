@@ -5,17 +5,24 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 export default SwitchAndDropDown
 
 function SwitchAndDropDown({ children, layout, menu, onClick }) {
-  const [menuState, setMenuState] = useState(false)
+  const [menuState, setMenuState] = useState()
   const [menuHeight, setMenuHeight] = useState('30px')
+  const [animationState, setAnimationState] = useState(false)
 
   useEffect(() => {
-    // console.log('menuState', menuState)
-    // console.log('menu', menu)
+    if (menuState) {
+      setTimeout(function () {
+        setAnimationState(true)
+        console.log('block ani')
+      }, 300)
+    } else {
+      setAnimationState(false)
+    }
   }, [menuState])
 
   const DDMenu = () => {
     return (
-      <StyledUl menuHeight={menuHeight}>
+      <StyledUl animationState={animationState} menuHeight={menuHeight}>
         {menu.map((item) => (
           <li onClick={() => handleMenuClick(item)}>
             {item.icon ? (
@@ -32,7 +39,7 @@ function SwitchAndDropDown({ children, layout, menu, onClick }) {
 
   return (
     <StyledDropDownArea layout={layout} menuState={menuState}>
-      <StyledChildren>{children}</StyledChildren>
+      <StyledChildren onClick={closeMenu}>{children}</StyledChildren>
       <StyledDropDownButton onMouseDown={toggleMenue}>
         <BsThreeDotsVertical />
       </StyledDropDownButton>
@@ -41,12 +48,17 @@ function SwitchAndDropDown({ children, layout, menu, onClick }) {
   )
 
   function handleMenuClick(item) {
-    toggleMenue()
-    onClick(item.node, item.nodeValue)
+    closeMenu()
+    onClick(item.node, item.targetState)
   }
 
   function toggleMenue() {
     setMenuState(!menuState)
+    setMenuHeight('50px')
+  }
+
+  function closeMenu() {
+    setMenuState(false)
     setMenuHeight('50px')
   }
 }
@@ -84,6 +96,14 @@ const StyledDropDownButton = styled.div`
   text-transform: uppercase;
   cursor: pointer;
   user-select: none;
+  &:active svg {
+    transform: scale(2);
+    transition: transform 0.3s ease-out;
+  }
+  &:focus {
+    background-color: #a16e28;
+    transition: background-color 0.3s ease-out;
+  }
 `
 
 const StyledDropDownArea = styled.div`
@@ -98,6 +118,12 @@ const StyledDropDownArea = styled.div`
   background-color: var(--color-primary);
   position: relative;
   height: 50px;
+  &:active {
+    transform: scale(0.75);
+    transition: transform 1s ease-out ease-out;
+    transform: scale(1);
+    transition: transform 1s ease-out ease-out;
+  }
 `
 
 const StyledUl = styled.ul`
@@ -113,7 +139,7 @@ const StyledUl = styled.ul`
   box-sizing: border-box;
   width: 100%;
   flot: right;
-  animation: b 0.3s;
+  animation: ${(props) => (props.animationState ? 'none' : 'b 0.3s')};
   font-size: 13px;
   color: white;
 

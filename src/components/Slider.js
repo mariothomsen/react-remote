@@ -3,18 +3,27 @@ import { useEffect, useState } from 'react'
 
 export default Slider
 
-function Slider({}) {
-  const [sliderValue, SetSliderValue] = useState(false)
-  function sliderHandle(event) {
-    console.log(event.target.value)
+function Slider({ onChange, slideVal, min, max, step, data }) {
+  const [sliderValue, SetSliderValue] = useState(50)
+
+  useEffect(() => {
+    SetSliderValue(slideVal)
+  }, [slideVal])
+
+  function sliderHandle(event, data) {
+    onChange(event, data)
+    SetSliderValue(event.target.value)
   }
+
   return (
     <StyledSlider
       id="typeinp"
       type="range"
-      min="0"
-      max="100"
-      onChange={sliderHandle}
+      value={sliderValue}
+      onChange={(event) => sliderHandle(event, data)}
+      min={min}
+      max={max}
+      step={step}
     />
   )
 }
@@ -45,9 +54,12 @@ const StyledSlider = styled.input`
   }
 
   &::-moz-range-thumb {
+    appearance: none;
     width: 25px;
     height: 25px;
     background: var(--color-primary);
     cursor: pointer;
+    border-radius: 50%;
+    border: 5px solid #242424;
   }
 `
