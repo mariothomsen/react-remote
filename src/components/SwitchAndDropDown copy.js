@@ -4,61 +4,52 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 
 export default SwitchAndDropDown
 
-function SwitchAndDropDown({ children, layout, menu, onClick }) {
-  const [menuState, setMenuState] = useState()
+function SwitchAndDropDown({ children, layout, overlay }) {
+  const [menuState, setMenuState] = useState(false)
   const [menuHeight, setMenuHeight] = useState('30px')
-  const [animationState, setAnimationState] = useState(false)
 
   useEffect(() => {
-    if (menuState) {
-      setTimeout(function () {
-        setAnimationState(true)
-        console.log('block ani')
-      }, 300)
-    } else {
-      setAnimationState(false)
-    }
+    console.log('menuState', menuState)
   }, [menuState])
 
-  const DDMenu = () => {
+  const DropDownMenu = () => {
     return (
-      <StyledUl animationState={animationState} menuHeight={menuHeight}>
-        {menu.map((item) => (
-          <li onClick={() => handleMenuClick(item)}>
-            {item.icon ? (
-              item.icon
-            ) : (
-              <StyledColorIndicator bgColor={item.color} />
-            )}
-            <span>{item.text}</span>
-          </li>
-        ))}
+      <StyledUl menuHeight={menuHeight} overlay={overlay}>
+        <li onClick={toggleMenue}>
+          <StyledColorIndicator bgColor="#ffa10070" />
+          <span>Gemütlich</span>
+        </li>
+        <li onClick={toggleMenue}>
+          <StyledColorIndicator bgColor="var(--color-primary)" />
+          <span>Normal I</span>
+        </li>
+        <li onClick={toggleMenue}>
+          <StyledColorIndicator bgColor="var(--color-primary)" />
+          <span>Normal II</span>
+        </li>
+        <li onClick={toggleMenue}>
+          <StyledColorIndicator bgColor="#e3f2ff" />
+          <span>Hell</span>
+        </li>
       </StyledUl>
     )
   }
 
   return (
-    <StyledDropDownArea layout={layout} menuState={menuState}>
-      <StyledChildren onClick={closeMenu}>{children}</StyledChildren>
-      <StyledDropDownButton onMouseDown={toggleMenue}>
-        <BsThreeDotsVertical />
-      </StyledDropDownButton>
-      {menuState && <DDMenu />}
-    </StyledDropDownArea>
+    <StyledLayout layout={layout}>
+      <StyledDropDownArea menuState={menuState}>
+        <StyledChildren>{children}</StyledChildren>
+        <StyledDropDownButton onMouseDown={toggleMenue}>
+          <BsThreeDotsVertical />
+        </StyledDropDownButton>
+        {menuState && <DropDownMenu />}
+      </StyledDropDownArea>
+    </StyledLayout>
   )
 
-  function handleMenuClick(item) {
-    closeMenu()
-    onClick(item.node, item.targetState)
-  }
-
   function toggleMenue() {
+    console.log('toggle...')
     setMenuState(!menuState)
-    setMenuHeight('50px')
-  }
-
-  function closeMenu() {
-    setMenuState(false)
     setMenuHeight('50px')
   }
 }
@@ -81,6 +72,11 @@ const StyledChildren = styled.div`
   }
 `
 
+const StyledLayout = styled.div`
+  display: grid;
+  grid-template-columns: ${(props) => props.layout};
+`
+
 const StyledColorIndicator = styled.div`
   border-radius: 50%;
   background-color: ${(props) => props.bgColor};
@@ -96,34 +92,17 @@ const StyledDropDownButton = styled.div`
   text-transform: uppercase;
   cursor: pointer;
   user-select: none;
-  &:active svg {
-    transform: scale(2);
-    transition: transform 0.3s ease-out;
-  }
-  &:focus {
-    background-color: #a16e28;
-    transition: background-color 0.3s ease-out;
-  }
 `
 
 const StyledDropDownArea = styled.div`
   display: grid;
-  grid-template-columns: ${(props) => props.layout};
+  grid-template-columns: 6fr 1fr;
   border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
   border-bottom-right-radius: ${(props) => (props.menuState ? '0px' : '3px')};
-  border-bottom-left-radius: ${(props) => (props.menuState ? '0px' : '3px')};
-  transition: border-bottom-right-radius 0.3s ease-out,
-    border-bottom-left-radius 0.3s ease-out;
+  transition: border-bottom-right-radius 0.3s ease-out;
   background-color: var(--color-primary);
   position: relative;
   height: 50px;
-  &:active {
-    transform: scale(0.75);
-    transition: transform 1s ease-out ease-out;
-    transform: scale(1);
-    transition: transform 1s ease-out ease-out;
-  }
 `
 
 const StyledUl = styled.ul`
@@ -137,14 +116,15 @@ const StyledUl = styled.ul`
   flex-direction: column;
   position: absolute;
   box-sizing: border-box;
-  width: 100%;
+
   flot: right;
-  animation: ${(props) => (props.animationState ? 'none' : 'b 0.3s')};
+  animation: ${(props) => (props.overlay ? 'none' : 'b 0.3s')};
+
   font-size: 13px;
   color: white;
 
   span {
-    padding-left: 10px;
+    padding-left: 20px;
   }
 
   li {
@@ -156,23 +136,24 @@ const StyledUl = styled.ul`
     cursor: pointer;
     transition: background-color 0.3s ease-out;
     transition-delay: 0.1s;
-    padding-left: 15px;
+    padding-left: 20px;
     user-select: none;
     font-weight: 200;
     letter-spacing: 0.5px;
     font-size: 11px;
     text-transform: uppercase;
-    padding-right: 10px;
-  }
-
-  li:first-child {
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
+    padding-right: 30px;
   }
 
   li:last-child {
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
+    border-bottom: 0px solid grey;
+  }
+
+  li:first-child {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
   }
 
   li:hover {

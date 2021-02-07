@@ -13,7 +13,7 @@ function DropDownButton({}) {
 
   const DropDownMenu = () => {
     return (
-      <StyledDropDownMenu>
+      <StyledUl>
         <li onClick={toggleMenue}>
           <StyledColorIndicator bgColor="#ffa10070" />
           <span>Gemütlich</span>
@@ -30,7 +30,7 @@ function DropDownButton({}) {
           <StyledColorIndicator bgColor="#e3f2ff" />
           <span>Hell</span>
         </li>
-      </StyledDropDownMenu>
+      </StyledUl>
     )
   }
 
@@ -84,7 +84,7 @@ const StyledButton = styled.div`
 const StyledDropDown = styled.div`
   position: relative;
 `
-const StyledDropDownMenu = styled.ul`
+const StyledUl = styled.ul`
   z-index: 100;
   list-style: none;
   padding: 0;
