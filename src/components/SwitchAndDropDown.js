@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 
 export default SwitchAndDropDown
@@ -7,22 +7,27 @@ export default SwitchAndDropDown
 function SwitchAndDropDown({ children, layout, menu, onClick }) {
   const [menuState, setMenuState] = useState()
   const [menuHeight, setMenuHeight] = useState('30px')
-  const [animationState, setAnimationState] = useState(false)
 
-  useEffect(() => {
-    if (menuState) {
-      setTimeout(function () {
-        setAnimationState(true)
-        console.log('block ani')
-      }, 300)
-    } else {
-      setAnimationState(false)
-    }
-  }, [menuState])
+  // useEffect(() => {
+  //   if (menuState) {
+  //     setTimeout(function () {
+  //       setAnimationState(true)
+  //       console.log('block ani')
+  //     }, 300)
+  //   } else {
+  //     setAnimationState(false)
+  //   }
+  // }, [menuState])
+
+  //   const areEqual = (prevProps, nextProps) => true;
+
+  // const MyComponent = useMemo(props => {
+  //   return /*whatever jsx you like */
+  // }, areEqual);
 
   const DDMenu = () => {
     return (
-      <StyledUl animationState={animationState} menuHeight={menuHeight}>
+      <StyledUl menuHeight={menuHeight}>
         {menu.map((item) => (
           <li onClick={() => handleMenuClick(item)}>
             {item.icon ? (
@@ -43,7 +48,20 @@ function SwitchAndDropDown({ children, layout, menu, onClick }) {
       <StyledDropDownButton onMouseDown={toggleMenue}>
         <BsThreeDotsVertical />
       </StyledDropDownButton>
-      {menuState && <DDMenu />}
+      {menuState && (
+        <StyledUl menuHeight={menuHeight}>
+          {menu.map((item) => (
+            <li onClick={() => handleMenuClick(item)}>
+              {item.icon ? (
+                item.icon
+              ) : (
+                <StyledColorIndicator bgColor={item.color} />
+              )}
+              <span>{item.text}</span>
+            </li>
+          ))}
+        </StyledUl>
+      )}
     </StyledDropDownArea>
   )
 
