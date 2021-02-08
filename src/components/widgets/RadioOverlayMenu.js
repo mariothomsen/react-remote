@@ -92,6 +92,8 @@ const StyledLayout = styled.div`
     flex-direction: row;
     align-items: center;
     cursor: pointer;
+    border-bottom: 0.5px solid #e3e3e3;
+    width: 350px;
 
     img {
       width: 20px;

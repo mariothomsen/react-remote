@@ -33,7 +33,7 @@ function SwitchAndDropDown({ children, layout, menu, onClick }) {
       {menuState && (
         <StyledUl>
           {menu.map((item) => (
-            <li onClick={() => handleMenuClick(item)}>
+            <li key={item.text} onClick={() => handleMenuClick(item)}>
               {item.icon ? (
                 item.icon
               ) : (
