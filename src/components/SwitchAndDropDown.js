@@ -6,28 +6,10 @@ export default SwitchAndDropDown
 
 function SwitchAndDropDown({ children, layout, menu, onClick }) {
   const [menuState, setMenuState] = useState()
-  const [menuHeight, setMenuHeight] = useState('30px')
-
-  // useEffect(() => {
-  //   if (menuState) {
-  //     setTimeout(function () {
-  //       setAnimationState(true)
-  //       console.log('block ani')
-  //     }, 300)
-  //   } else {
-  //     setAnimationState(false)
-  //   }
-  // }, [menuState])
-
-  //   const areEqual = (prevProps, nextProps) => true;
-
-  // const MyComponent = useMemo(props => {
-  //   return /*whatever jsx you like */
-  // }, areEqual);
 
   const DDMenu = () => {
     return (
-      <StyledUl menuHeight={menuHeight}>
+      <StyledUl>
         {menu.map((item) => (
           <li onClick={() => handleMenuClick(item)}>
             {item.icon ? (
@@ -49,7 +31,7 @@ function SwitchAndDropDown({ children, layout, menu, onClick }) {
         <BsThreeDotsVertical />
       </StyledDropDownButton>
       {menuState && (
-        <StyledUl menuHeight={menuHeight}>
+        <StyledUl>
           {menu.map((item) => (
             <li onClick={() => handleMenuClick(item)}>
               {item.icon ? (
@@ -72,12 +54,10 @@ function SwitchAndDropDown({ children, layout, menu, onClick }) {
 
   function toggleMenue() {
     setMenuState(!menuState)
-    setMenuHeight('50px')
   }
 
   function closeMenu() {
     setMenuState(false)
-    setMenuHeight('50px')
   }
 }
 
