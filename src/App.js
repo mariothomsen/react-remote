@@ -29,7 +29,11 @@ function App() {
     loadApiStates,
   } = useApiStates()
 
-  const { data } = useRoomConfig(getApiState, updateApiState, updateLocalState)
+  const { roomData } = useRoomConfig(
+    getApiState,
+    updateApiState,
+    updateLocalState
+  )
 
   const {
     overlayStatus,
@@ -61,30 +65,30 @@ function App() {
       <main>
         <Card>
           <CardHead
-            headline={data[roomName].name}
-            infos={data[roomName].infos}
+            headline={roomData[roomName].name}
+            infos={roomData[roomName].infos}
           />
           <Layout layout="1fr 15px 1fr 15px 2fr">
             <SwitchButton
-              onClick={() => handleRadioClick(data[roomName])}
-              value={data[roomName].radioValue}
+              onClick={() => handleRadioClick(roomData[roomName])}
+              value={roomData[roomName].radioValue}
               children={<BiRadio size="15" />}
             />
             <div></div>
             <SwitchButton
-              onClick={() => handleHeatingClick(data[roomName])}
+              onClick={() => handleHeatingClick(roomData[roomName])}
               value={false}
               children={<RiTempColdLine size="15" />}
             />
             <div></div>
-            <LightWidget roomData={data[roomName]} />
+            <LightWidget roomData={roomData[roomName]} />
           </Layout>
           <VolumneSlider
-            onChange={data[roomName]}
+            onChange={roomData[roomName]}
             min="0"
             max="100"
             step="10"
-            roomData={data[roomName]}
+            roomData={roomData[roomName]}
           ></VolumneSlider>
         </Card>
       </main>
@@ -92,7 +96,7 @@ function App() {
   }
 
   /** MAIN **/
-  if (data['buero']) {
+  if (roomData['buero']) {
     return (
       <StyledApp className="App">
         <Overlay status={overlayStatus} onClick={() => setOverlayStatus(false)}>

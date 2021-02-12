@@ -13,7 +13,7 @@ export default function useRoomConfig(
   updateApiState,
   updateLocalState
 ) {
-  var data = {
+  var roomData = {
     /************************ BÜRO *************************/
     buero: {
       name: 'büro',
@@ -124,7 +124,7 @@ export default function useRoomConfig(
   }
 
   return {
-    data,
+    roomData,
   }
 }
 
