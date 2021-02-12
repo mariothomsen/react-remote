@@ -7,6 +7,10 @@ function Slider({ onChange, slideVal, min, max, step, data }) {
   const [sliderValue, SetSliderValue] = useState(50)
 
   useEffect(() => {
+    SetSliderValue(0)
+  }, [])
+
+  useEffect(() => {
     SetSliderValue(slideVal)
   }, [slideVal])
 
@@ -19,7 +23,7 @@ function Slider({ onChange, slideVal, min, max, step, data }) {
     <StyledSlider
       id="typeinp"
       type="range"
-      value={sliderValue}
+      value={sliderValue || 0}
       onChange={(event) => sliderHandle(event, data)}
       min={min}
       max={max}

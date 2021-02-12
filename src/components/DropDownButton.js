@@ -5,11 +5,6 @@ export default DropDownButton
 
 function DropDownButton({}) {
   const [menuState, setMenuState] = useState(false)
-  const [menuHeight, setMenuHeight] = useState('30px')
-
-  useEffect(() => {
-    console.log('menuState', menuState)
-  }, [menuState])
 
   const DropDownMenu = () => {
     return (
@@ -50,7 +45,6 @@ function DropDownButton({}) {
   function toggleMenue() {
     console.log('toggle...')
     setMenuState(!menuState)
-    setMenuHeight('50px')
   }
 }
 const StyledColorIndicator = styled.div`
@@ -159,8 +153,3 @@ const StyledUl = styled.ul`
     }
   }
 `
-
-/*
-    background-color: ${props => props.value ? "palevioletred" : "blue"};
-
-*/

@@ -1,5 +1,4 @@
 import styled from 'styled-components/macro'
-import useNodeStates from './../hooks/useNodeStates'
 
 export default CardHead
 
