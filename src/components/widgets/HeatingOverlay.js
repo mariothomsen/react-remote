@@ -38,15 +38,15 @@ export default function HeatingOverlay({ roomData }) {
         data={roomData}
       ></Slider>
       <StyledButtonArea>
-        <StlyedOff onClick={() => handleButtonClick(roomData, 'on')}>
+        <StyledButton onClick={() => handleButtonClick(roomData, 'on')}>
           <AiOutlinePoweroff color="#306730"></AiOutlinePoweroff>
-        </StlyedOff>
-        <StlyedOff onClick={() => handleButtonClick(roomData, 'boost')}>
+        </StyledButton>
+        <StyledButton onClick={() => handleButtonClick(roomData, 'boost')}>
           <AiOutlineFire color="var(--color-primary)"></AiOutlineFire>
-        </StlyedOff>
-        <StlyedOff onClick={() => handleButtonClick(roomData, 'off')}>
+        </StyledButton>
+        <StyledButton onClick={() => handleButtonClick(roomData, 'off')}>
           <AiOutlinePoweroff color="#bb2d2d"></AiOutlinePoweroff>
-        </StlyedOff>
+        </StyledButton>
       </StyledButtonArea>
     </StyledLayout>
   )
@@ -70,11 +70,11 @@ const StyledButtonArea = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-top: 35px;
+  margin-top: 40px;
   width: 315px;
 `
 
-const StlyedOff = styled.div`
+const StyledButton = styled.div`
   font-size: 1em;
   font-weight: 200;
   text-transform: uppercase;
@@ -83,6 +83,7 @@ const StlyedOff = styled.div`
   box-sizing: border-box;
   display: grid;
   text-align: center;
+  cursor: pointer;
 `
 
 const StyledTargetTemp = styled.div`

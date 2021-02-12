@@ -29,22 +29,22 @@ export default function RadioOverlayMenu({ roomData }) {
       <h3>{roomData.name}</h3>
       <ul>
         {roomData.radioMenu.map((item) => (
-          <li onClick={() => handleMenuClick(item, roomData)}>
+          <li key={item.text} onClick={() => handleMenuClick(item, roomData)}>
             <img src={item.logo} />
             {item.text}
           </li>
         ))}
       </ul>
       <StyledButtonArea>
-        <StlyedOff onClick={() => handleMainButtonClick(roomData, '.1')}>
+        <StyledButton onClick={() => handleMainButtonClick(roomData, '.1')}>
           <AiOutlinePoweroff color="#306730"></AiOutlinePoweroff>
-        </StlyedOff>
-        <StlyedOff onClick={() => handleMainButtonClick(roomData, '.2')}>
+        </StyledButton>
+        <StyledButton onClick={() => handleMainButtonClick(roomData, '.2')}>
           <AiOutlineStepForward color="var(--color-primary)"></AiOutlineStepForward>
-        </StlyedOff>
-        <StlyedOff onClick={() => handleMainButtonClick(roomData, '.0')}>
+        </StyledButton>
+        <StyledButton onClick={() => handleMainButtonClick(roomData, '.0')}>
           <AiOutlinePoweroff color="#bb2d2d"></AiOutlinePoweroff>
-        </StlyedOff>
+        </StyledButton>
       </StyledButtonArea>
     </StyledLayout>
   )
@@ -53,11 +53,12 @@ const StyledButtonArea = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-top: 35px;
+  margin-top: 40px;
   width: 315px;
+  cursor: pointer;
 `
 
-const StlyedOff = styled.div`
+const StyledButton = styled.div`
   font-size: 1em;
   font-weight: 200;
   text-transform: uppercase;
@@ -74,7 +75,6 @@ const StyledLayout = styled.div`
 
   ul {
     padding: 0;
-    max-width: 150px;
   }
 
   h3 {
@@ -92,6 +92,8 @@ const StyledLayout = styled.div`
     flex-direction: row;
     align-items: center;
     cursor: pointer;
+    border-bottom: 0.5px solid #e3e3e3;
+    width: 350px;
 
     img {
       width: 20px;
