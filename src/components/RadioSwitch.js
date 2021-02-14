@@ -4,19 +4,25 @@ import { v4 as uuidv4 } from 'uuid'
 import { FaBeer } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 
-export default function RadioSwitch({ node, options, currentValue, onChange }) {
+export default function RadioSwitch({
+  node,
+  options,
+  currentValue,
+  onChange,
+  mykey,
+}) {
   return (
     <StyledForm>
       {options.map((option, index) => (
         <StyledDiv key={'input' + node + index}>
           <input
-            id={node + index}
+            id={mykey + '-' + index}
             onChange={onChange}
             type="radio"
             value={option.value}
             checked={option.value === currentValue}
           />
-          <label htmlFor={node + index}>{option.icon}</label>
+          <label htmlFor={mykey + '-' + index}>{option.icon}</label>
         </StyledDiv>
       ))}
     </StyledForm>
@@ -53,6 +59,6 @@ const StyledForm = styled.div`
     width: 100%;
     cursor: pointer;
     color: white;
-    color: #424242a1;
+    color: #424242cc;
   }
 `

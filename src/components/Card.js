@@ -10,5 +10,5 @@ const StyledDiv = styled.div`
   background-color: #242424;
   border-radius: 10px;
   padding: 15px;
-  margin: 10px;
+  margin: 10px 10px 15px 10px;
 `
