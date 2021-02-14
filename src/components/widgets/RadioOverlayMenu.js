@@ -70,9 +70,10 @@ const StyledButton = styled.div`
 `
 
 const StyledLayout = styled.div`
+  font-family: 'Roboto', sans-serif;
+
   display: grid;
   place-items: center;
-
   ul {
     padding: 0;
   }
@@ -87,14 +88,15 @@ const StyledLayout = styled.div`
     font-size: 0.4em;
     font-weight: 100;
     padding-bottom: 5px;
-    height: 40px;
+    height: 38px;
+    margin-top: 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
     cursor: pointer;
-    border-bottom: 0.5px solid #e3e3e3;
-    width: 350px;
-
+    border-bottom: 0.5px solid #e3e3e3a3;
+    max-width: 300px;
+    min-width: 200px;
     img {
       width: 20px;
       margin-right: 10px;

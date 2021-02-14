@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 export default createGlobalStyle`
 
   @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap');
-
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
   html {
     
 
@@ -14,7 +14,7 @@ export default createGlobalStyle`
 
   body {
     font-size: 13px;
-    font-family: 'Roboto', 'Noto', sans-serif;
+    font-family: 'Noto', sans-serif;
     color: white;
     background-color: black;
     padding: 0;
@@ -26,8 +26,8 @@ export default createGlobalStyle`
   }
 
   :root{
-    /* Colors */
-    --color-primary: #ffad22;
+    /* Colors #ffb943 #ffad22*/
+    --color-primary: #ffaa1e;
     --color-secondary: #535353;
     --color-tertiary: #999999;
     --color-bg: #F4F4F4;

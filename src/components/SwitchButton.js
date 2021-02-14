@@ -11,22 +11,21 @@ function SwitchButton({ node, onClick, value, children }) {
 }
 
 const StyledButton = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  place-items: center;
+
   background-color: var(--color-primary);
   border: 0 solid currentColor;
   border-radius: 3px;
-  padding: 10px 25px;
-  color: ${(props) => (props.value ? 'white' : '#424242a1')};
+  color: ${(props) => (props.value ? 'white' : '#424242cc')};
   width: 100%;
   text-transform: uppercase;
   transition: color 0.3s ease-out;
-  padding-top: 15px;
   vertical-align: 'baseline';
-
-  &:hover {
-  }
-
-  &:focus {
-  }
+  height: 50px;
+  font-size: 8px;
 
   &:focus {
     outline: 0px solid #fff;
@@ -37,7 +36,13 @@ const StyledButton = styled.button`
     transition: transform 0.3s ease-out;
   }
 
-  &:focus {
+  span {
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+
+  svg {
+    padding-bottom: 2px;
   }
 `
 

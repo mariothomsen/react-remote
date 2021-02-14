@@ -25,11 +25,13 @@ function SwitchAndDropDown({ children, layout, menu, onClick }) {
   }
 
   return (
-    <StyledDropDownArea layout={layout} menuState={menuState}>
-      <StyledChildren onClick={closeMenu}>{children}</StyledChildren>
-      <StyledDropDownButton onMouseDown={toggleMenue}>
-        <BsThreeDotsVertical />
-      </StyledDropDownButton>
+    <StyledWrapper>
+      <StyledButtonArea layout={layout} menuState={menuState}>
+        <StyledChildren onClick={closeMenu}>{children}</StyledChildren>
+        <StyledDropDownButton onMouseDown={toggleMenue}>
+          <BsThreeDotsVertical />
+        </StyledDropDownButton>
+      </StyledButtonArea>
       {menuState && (
         <StyledUl>
           {menu.map((item) => (
@@ -44,7 +46,7 @@ function SwitchAndDropDown({ children, layout, menu, onClick }) {
           ))}
         </StyledUl>
       )}
-    </StyledDropDownArea>
+    </StyledWrapper>
   )
 
   function handleMenuClick(item) {
@@ -60,6 +62,9 @@ function SwitchAndDropDown({ children, layout, menu, onClick }) {
     setMenuState(false)
   }
 }
+const StyledWrapper = styled.div`
+  position: relative;
+`
 
 const StyledChildren = styled.div`
   display: flex;
@@ -90,7 +95,7 @@ const StyledColorIndicator = styled.div`
 const StyledDropDownButton = styled.div`
   display: grid;
   place-items: center;
-  color: ${(props) => (props.value ? 'white' : '#424242a1')};
+  color: ${(props) => (props.value ? 'white' : '#424242cc')};
   text-transform: uppercase;
   cursor: pointer;
   user-select: none;
@@ -104,7 +109,8 @@ const StyledDropDownButton = styled.div`
   }
 `
 
-const StyledDropDownArea = styled.div`
+const StyledButtonArea = styled.div`
+  position: relative;
   display: grid;
   grid-template-columns: ${(props) => props.layout};
   border-top-right-radius: 3px;
@@ -114,7 +120,7 @@ const StyledDropDownArea = styled.div`
   transition: border-bottom-right-radius 0.3s ease-out,
     border-bottom-left-radius 0.3s ease-out;
   background-color: var(--color-primary);
-  position: relative;
+
   height: 50px;
   &:active {
     transform: scale(0.75);
@@ -125,19 +131,18 @@ const StyledDropDownArea = styled.div`
 `
 
 const StyledUl = styled.ul`
-  z-index: 100;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  right: 0px;
-  top: 50px;
   display: flex;
   flex-direction: column;
   position: absolute;
+  z-index: 1000;
+
+  padding: 0;
+  margin: 0;
+  right: 0px;
   box-sizing: border-box;
   width: 100%;
-  flot: right;
   animation: ${(props) => (props.animationState ? 'none' : 'b 0.3s')};
+  animation-fill-mode: initial;
   font-size: 13px;
   color: white;
 

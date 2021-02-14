@@ -5,14 +5,17 @@ import { AiOutlinePoweroff, AiOutlineFire } from 'react-icons/ai'
 import Slider from './../Slider'
 
 export default function HeatingOverlay({ roomData }) {
-  const [targetTemp, setTargetTemp] = useState(roomData.heatingValue)
+  const [displayTemp, setDisplayTemp] = useState(roomData.heatingValue)
+
+  useEffect(() => {
+    setDisplayTemp(roomData.heatingValue)
+  }, [roomData])
 
   function handleButtonClick(roomData, modifier) {
     roomData.updateApiNode(
       roomData.heatingHandler,
       'heizung.' + roomData.name + '.' + modifier
     )
-    roomData.updateLocalNode(roomData.radioNode, false)
   }
 
   function handleTargetTempChange(event, roomData) {
@@ -21,14 +24,14 @@ export default function HeatingOverlay({ roomData }) {
       roomData.heatingHandler,
       'heizung.' + roomData.name + '.' + event.target.value
     )
-    setTargetTemp(event.target.value)
+    setDisplayTemp(event.target.value)
   }
 
   return (
     <StyledLayout>
       <h2>Heizung</h2>
       <h3>{roomData.name}</h3>
-      <StyledTargetTemp>{targetTemp}°</StyledTargetTemp>
+      <StyledTargetTemp>{displayTemp}°</StyledTargetTemp>
       <Slider
         onChange={handleTargetTempChange}
         min="5"
@@ -57,6 +60,7 @@ const StyledLayout = styled.div`
   display: grid;
   text-align: center;
   place-items: center;
+  font-family: 'Roboto', sans-serif;
 
   padding: 50px;
   box-sizing: border-box;
@@ -87,7 +91,8 @@ const StyledButton = styled.div`
 `
 
 const StyledTargetTemp = styled.div`
-  font-size: 2.8em;
+  font-size: 3.1em;
   font-weight: 100;
+  font-family: 'Roboto', sans-serif;
   color: var(--color-primary);
 `

@@ -24,12 +24,16 @@ export default function LightWidget({ roomData }) {
         node={roomData.lightHandler}
         onChange={handleRadioChange}
         currentValue={lightStatus}
+        mykey={roomData.name}
         options={[
           {
             value: true,
             icon: <HiLightBulb size="18" />,
           },
-          { value: false, icon: <HiOutlineLightBulb size="18" /> },
+          {
+            value: false,
+            icon: <HiOutlineLightBulb size="18" color="#886936" />,
+          },
         ]}
       />
     </SwitchAndDropDown>
