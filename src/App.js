@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import styled from 'styled-components/macro'
+import { Route, Switch } from 'react-router-dom'
 
 import { RiTempColdLine } from 'react-icons/ri'
 import { BiRadio } from 'react-icons/bi'
@@ -21,6 +22,7 @@ import LightWidget from './components/widgets/LightWidget'
 import RadioOverlayMenu from './components/widgets/RadioOverlayMenu'
 import HeatingOverlay from './components/widgets/HeatingOverlay'
 import VolumneSlider from './components/widgets/VolumneSlider'
+import Footer from './components/Footer'
 
 function App() {
   //
@@ -194,18 +196,32 @@ function App() {
   if (roomData['büro']) {
     return (
       <StyledApp className="App">
-        <Overlay status={overlayStatus} onClick={() => setOverlayStatus(false)}>
-          {overlayContent}
-        </Overlay>
-        {roomTemplateWG('wohnung')}
-        {roomTemplateV1('büro')}
-        {roomTemplateWZ('wohnzimmer')}
-        {roomTemplateV1('küche')}
-        {roomTemplateV1('badezimmer')}
-        {roomTemplateV1('schlafzimmer')}
-        <br></br>
-        <br></br>
-        <br></br>
+        <Switch>
+          <Route exact path="/">
+            <Overlay
+              status={overlayStatus}
+              onClick={() => setOverlayStatus(false)}
+            >
+              {overlayContent}
+            </Overlay>
+            {roomTemplateWG('wohnung')}
+            {roomTemplateV1('büro')}
+            {roomTemplateWZ('wohnzimmer')}
+            {roomTemplateV1('küche')}
+            {roomTemplateV1('badezimmer')}
+            {roomTemplateV1('schlafzimmer')}
+            <Footer></Footer>
+          </Route>
+          <Route exact path="/klima">
+            <Overlay
+              status={overlayStatus}
+              onClick={() => setOverlayStatus(false)}
+            >
+              {overlayContent}
+            </Overlay>
+            Klima...
+          </Route>
+        </Switch>
       </StyledApp>
     )
   } else {
