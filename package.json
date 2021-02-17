@@ -1,6 +1,7 @@
 {
   "name": "smarthome-react-remote",
   "version": "0.1.5",
+  "homepage": "http://locahost:3000",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.5",
