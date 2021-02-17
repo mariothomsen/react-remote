@@ -14,13 +14,17 @@ function Footer({}) {
 }
 
 const StyledDiv = styled.div`
+  @media only screen and (min-width: 1000px) {
+    display: none;
+  }
   width: 100%;
   text-align: center;
-  margin-bottom: 20px;
+  margin: 20px 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
   a {
     padding: 0 10px;
     width: 100px;

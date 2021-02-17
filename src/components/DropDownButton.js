@@ -119,7 +119,7 @@ const StyledUl = styled.ul`
   box-sizing: border-box;
   width: 100%;
   flot: right;
-  animation: ${(props) => (props.animationState ? 'none' : 'b 0.3s')};
+  animation: ${(props) => (props.animationState ? 'none' : 'b 0.1s')};
   -webkit-animation-fill-mode: initial; //Changed from both to initial
   animation-fill-mode: initial;
   font-size: 13px;
