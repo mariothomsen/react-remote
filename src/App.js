@@ -17,6 +17,7 @@ import CardHead from './components/widgets/CardHead'
 import Layout from './components/Layout'
 import Overlay from './components/Overlay'
 import DropDownButton from './components/DropDownButton'
+import Header from './components/Header'
 
 import LightWidget from './components/widgets/LightWidget'
 import RadioOverlayMenu from './components/widgets/RadioOverlayMenu'
@@ -212,6 +213,7 @@ function App() {
             >
               {overlayContent}
             </Overlay>
+            <Header></Header>
             <StyledMain>
               {roomTemplateWG('wohnung')}
               {roomTemplateV1('büro')}
