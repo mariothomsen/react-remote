@@ -33,13 +33,6 @@ export default function useRoomConfig(
     updateLocalState
   )
 
-  roomData['büro'] = loadStandardRoomData(
-    'büro',
-    getApiState,
-    updateApiState,
-    updateLocalState
-  )
-
   roomData['badezimmer'] = loadStandardRoomData(
     'badezimmer',
     getApiState,
@@ -57,6 +50,120 @@ export default function useRoomConfig(
   /************************ WOHNZIMMER (custom) *************************/
   let roomName = 'wohnzimmer'
   roomData['wohnzimmer'] = {
+    name: roomName,
+    infos: [
+      {
+        value: getApiState(
+          'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentArtist'
+        ),
+        type: 'currentPlaying',
+        prepand: ' ',
+        append: '\u00A0|',
+      },
+      {
+        value: getApiState('javascript.0.klima.' + roomName + 'Temp'),
+        type: 'temp',
+        prepand: ' ',
+        append: '° / ',
+      },
+      {
+        value: getApiState('javascript.0.klima.' + roomName + 'TargetTemp'),
+        type: 'temp',
+        prepand: ' ',
+        append: '° |\u00A0 ',
+      },
+      {
+        value: getApiState('javascript.0.klima.' + roomName + 'Humidity'),
+        type: 'humidity',
+        prepand: ' ',
+        append: '% ',
+      },
+    ],
+    lightHandler: 'javascript.0.handler.lights',
+    lightValue: getApiState('javascript.0.lights.' + roomName + '.current'),
+    lightNode: 'javascript.0.lights.' + roomName + '.current',
+    lightWidgetLayout: '2fr 1fr',
+    lightMenu: [
+      {
+        node: 'javascript.0.handler.lights',
+        text: 'Gemütlich',
+        color: '#ffa10070',
+        targetState: roomName + '.1',
+      },
+      {
+        node: 'javascript.0.handler.lights',
+        text: 'Normal',
+        color: 'var(--color-primary)',
+        targetState: roomName + '.2',
+      },
+      {
+        node: 'javascript.0.handler.lights',
+        text: 'Hell',
+        color: '#e3f2ff',
+        icon: '',
+        targetState: roomName + '.3',
+      },
+    ],
+    volumneValue: getApiState(
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume'
+    ),
+    volumneNode: 'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume',
+    radioHandler: 'javascript.0.handler.radio',
+    radioValue: getApiState(
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState'
+    ),
+    radioNode:
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
+    radioMenu: [
+      {
+        node: 'javascript.0.handler.radio',
+        text: 'Hamburg Zwei',
+        targetState: roomName + '.s78204',
+        logo: s78204,
+      },
+      {
+        node: 'javascript.0.handler.radio',
+        text: 'Radio HH',
+        targetState: roomName + '.s18018',
+        logo: s18018,
+      },
+      {
+        node: 'javascript.0.handler.radio',
+        text: 'NDR Info',
+        targetState: roomName + '.s24885',
+        logo: s24885,
+      },
+      {
+        node: 'javascript.0.handler.radio',
+        text: 'Deutschlandfunk',
+        targetState: roomName + '.s42828',
+        logo: s42828,
+      },
+      {
+        node: 'javascript.0.handler.radio',
+        text: 'DLF Nova',
+        targetState: roomName + '.s120806',
+        logo: s120806,
+      },
+      {
+        node: 'javascript.0.handler.radio',
+        text: 'Bayern 2',
+        targetState: roomName + '.s24855',
+        logo: s24855,
+      },
+    ],
+    heatingValue: getApiState('javascript.0.klima.' + roomName + 'TargetTemp'),
+    heatingNode: 'javascript.0.klima.' + roomName + 'TargetTemp',
+    heatingHandler: 'javascript.0.handler.heating',
+    updateApiNode: updateApiState,
+    updateLocalNode: updateLocalState,
+    tvState: getApiState('javascript.0.statusInfos.tvon'),
+    tvHandler: 'javascript.0.handler.tv',
+  }
+
+  /************************ Büro (custom) *************************/
+  roomName = 'büro'
+  roomData['büro'] = {
     name: roomName,
     infos: [
       {
@@ -180,6 +287,7 @@ export default function useRoomConfig(
     tvState: getApiState('javascript.0.statusInfos.tvon'),
     tvHandler: 'javascript.0.handler.tv',
   }
+
   /************************ TERRASSE (custom) *************************/
   roomName = 'terrasse'
   roomData['terrasse'] = {
@@ -203,28 +311,16 @@ export default function useRoomConfig(
       },
       {
         node: 'javascript.0.handler.lights',
-        text: 'Normal II',
-        color: 'var(--color-primary)',
-        targetState: roomName + '.2',
-      },
-      {
-        node: 'javascript.0.handler.lights',
         text: 'Hell',
         color: '#e3f2ff',
         icon: '',
         targetState: roomName + '.3',
       },
-      {
-        node: 'javascript.0.handler.lights',
-        text: 'Meeting',
-        color: '#e3f2ff',
-        icon: '',
-        targetState: roomName + '.6',
-      },
     ],
     updateApiNode: updateApiState,
     updateLocalNode: updateLocalState,
   }
+
   /************************ WOHNUNG (custom) *************************/
   roomName = 'wohnung'
   roomData['wohnung'] = {
@@ -393,6 +489,7 @@ export default function useRoomConfig(
     roomData,
   }
 }
+
 /************************ loadStandardRoomData *************************/
 
 function loadStandardRoomData(
@@ -450,23 +547,10 @@ function loadStandardRoomData(
       },
       {
         node: 'javascript.0.handler.lights',
-        text: 'Normal II',
-        color: 'var(--color-primary)',
-        targetState: roomName + '.2',
-      },
-      {
-        node: 'javascript.0.handler.lights',
         text: 'Hell',
         color: '#e3f2ff',
         icon: '',
         targetState: roomName + '.3',
-      },
-      {
-        node: 'javascript.0.handler.lights',
-        text: 'Meeting',
-        color: '#e3f2ff',
-        icon: '',
-        targetState: roomName + '.6',
       },
     ],
     volumneValue: getApiState(
