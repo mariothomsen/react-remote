@@ -284,15 +284,16 @@ const StyledApp = styled.div`
   @media only screen and (min-width: 1000px) {
     height: 100vh;
   }
+  width: 100%;
 `
 const StyledMain = styled.main`
+  width: 100%;
   @media only screen and (min-width: 1000px) {
-    max-width: 1000px;
+    max-width: 930px;
     display: flex;
     flex-flow: column wrap;
     align-content: space-between;
     height: 550px;
-    margin-right: 450px;
   }
 `
 
