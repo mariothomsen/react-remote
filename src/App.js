@@ -51,10 +51,22 @@ function App() {
     setOverlayContent,
   } = useOverlay()
 
-  // On load
+  // On fist load
   useEffect(() => {
     console.log('OnLoad...', apiStates)
     loadApiStates()
+
+    const isFullscreen = window.location.search.split('popup=')[1]
+    if (isFullscreen === 'true') {
+      var url = 'http://localhost:3000/'
+      window.open(
+        url,
+        'window',
+        'toolbar=no, menubar=no, resizable=yes, height=' +
+          window.screen.height +
+          'px, width=500px'
+      )
+    }
   }, [])
 
   // Refresh states
@@ -63,7 +75,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     interval = setInterval(() => {
       loadApiStates()
-      console.log('OnLoad...', apiStates)
     }, 5000)
     return () => {
       clearInterval(interval)
@@ -72,79 +83,75 @@ function App() {
 
   function roomTemplateV1(roomName) {
     return (
-      <main>
-        <Card>
-          <CardHead roomData={roomData[roomName]} />
+      <Card>
+        <CardHead roomData={roomData[roomName]} />
+        <Layout layout="1fr 15px 1fr">
           <Layout layout="1fr 15px 1fr">
-            <Layout layout="1fr 15px 1fr">
-              <SwitchButton
-                onClick={() => handleRadioClick(roomData[roomName])}
-                value={roomData[roomName].radioValue}
-                children={<BiRadio size="15" />}
-              />
-              <div></div>
-              <SwitchButton
-                onClick={() => handleHeatingClick(roomData[roomName])}
-                value={false}
-                children={<RiTempColdLine size="15" />}
-              />
-            </Layout>
+            <SwitchButton
+              onClick={() => handleRadioClick(roomData[roomName])}
+              value={roomData[roomName].radioValue}
+              children={<BiRadio size="15" />}
+            />
             <div></div>
-            <LightWidget roomData={roomData[roomName]} />
+            <SwitchButton
+              onClick={() => handleHeatingClick(roomData[roomName])}
+              value={false}
+              children={<RiTempColdLine size="15" />}
+            />
           </Layout>
-          <VolumneSlider
-            onChange={roomData[roomName]}
-            min="0"
-            max="100"
-            step="10"
-            roomData={roomData[roomName]}
-          ></VolumneSlider>
-        </Card>
-      </main>
+          <div></div>
+          <LightWidget roomData={roomData[roomName]} />
+        </Layout>
+        <VolumneSlider
+          onChange={roomData[roomName]}
+          min="0"
+          max="100"
+          step="10"
+          roomData={roomData[roomName]}
+        ></VolumneSlider>
+      </Card>
     )
   }
 
   function roomTemplateWZ(roomName) {
     return (
-      <main>
-        <Card>
-          <CardHead roomData={roomData[roomName]} />
+      <Card>
+        <CardHead roomData={roomData[roomName]} />
+        <Layout layout="1fr 15px 1fr">
           <Layout layout="1fr 15px 1fr">
-            <Layout layout="1fr 15px 1fr">
-              <SwitchButton
-                onClick={() => handleRadioClick(roomData[roomName])}
-                value={roomData[roomName].radioValue}
-                children={<BiRadio size="15" />}
-              />
-              <div></div>
-              <SwitchButton
-                onClick={() => handleHeatingClick(roomData[roomName])}
-                value={false}
-                children={<RiTempColdLine size="15" />}
-              />
-            </Layout>
-            <div></div>
-            <LightWidget roomData={roomData[roomName]} />
-          </Layout>
-          <br></br>
-          <Layout layout="1fr 15px 1fr ">
             <SwitchButton
-              onClick={() => handleTVClick(roomData[roomName])}
-              value={roomData[roomName].tvState}
-              children={<FiMonitor size="15" />}
+              onClick={() => handleRadioClick(roomData[roomName])}
+              value={roomData[roomName].radioValue}
+              children={<BiRadio size="15" />}
             />
             <div></div>
-            <LightWidget roomData={roomData['terrasse']} />
+            <SwitchButton
+              onClick={() => handleHeatingClick(roomData[roomName])}
+              value={false}
+              children={<RiTempColdLine size="15" />}
+            />
           </Layout>
-          <VolumneSlider
-            onChange={roomData[roomName]}
-            min="0"
-            max="100"
-            step="10"
-            roomData={roomData[roomName]}
-          ></VolumneSlider>
-        </Card>
-      </main>
+          <div></div>
+          <LightWidget roomData={roomData[roomName]} />
+        </Layout>
+        <br></br>
+        <Layout layout="1fr 15px 1fr ">
+          <SwitchButton
+            onClick={() => handleTVClick(roomData[roomName])}
+            value={roomData[roomName].tvState}
+            children={<FiMonitor size="15" />}
+          />
+          <div></div>
+          <LightWidget roomData={roomData['terrasse']} />
+        </Layout>
+        <VolumneSlider
+          onChange={roomData[roomName]}
+          min="0"
+          max="100"
+          step="10"
+          roomData={roomData[roomName]}
+        ></VolumneSlider>
+      </Card>
     )
   }
   function handleMenuChange(node, value) {
@@ -153,45 +160,43 @@ function App() {
 
   function roomTemplateWG(roomName) {
     return (
-      <main>
-        <Card>
-          <CardHead roomData={roomData[roomName]} />
-          <Layout layout="1fr 15px 1fr 15px 1fr ">
-            <SwitchButton
-              onClick={() => handleRadioClick(roomData['wohnung'])}
-              value={roomData['wohnung'].radioValue}
-              children={
-                <>
-                  <BiRadio size="15" />
-                  <span>Wohnung</span>
-                </>
-              }
-            />
-            <div></div>
-            <SwitchButton
-              onClick={() => handleRadioClick(roomData['südflügel'])}
-              value={roomData['südflügel'].radioValue}
-              children={
-                <>
-                  <BiRadio size="15" />
-                  <span>Südflügel</span>
-                </>
-              }
-            />
-            <div></div>
-            <DropDownButton
-              onClick={handleMenuChange}
-              menu={roomData[roomName].ddmenu}
-              children={
-                <>
-                  <BsList size="15" />
-                  <span>Szenen</span>
-                </>
-              }
-            />
-          </Layout>
-        </Card>
-      </main>
+      <Card>
+        <CardHead roomData={roomData[roomName]} />
+        <Layout layout="1fr 15px 1fr 15px 1fr ">
+          <SwitchButton
+            onClick={() => handleRadioClick(roomData['wohnung'])}
+            value={roomData['wohnung'].radioValue}
+            children={
+              <>
+                <BiRadio size="15" />
+                <span>Wohnung</span>
+              </>
+            }
+          />
+          <div></div>
+          <SwitchButton
+            onClick={() => handleRadioClick(roomData['südflügel'])}
+            value={roomData['südflügel'].radioValue}
+            children={
+              <>
+                <BiRadio size="15" />
+                <span>Südflügel</span>
+              </>
+            }
+          />
+          <div></div>
+          <DropDownButton
+            onClick={handleMenuChange}
+            menu={roomData[roomName].ddmenu}
+            children={
+              <>
+                <BsList size="15" />
+                <span>Szenen</span>
+              </>
+            }
+          />
+        </Layout>
+      </Card>
     )
   }
 
@@ -207,12 +212,14 @@ function App() {
             >
               {overlayContent}
             </Overlay>
-            {roomTemplateWG('wohnung')}
-            {roomTemplateV1('büro')}
-            {roomTemplateWZ('wohnzimmer')}
-            {roomTemplateV1('küche')}
-            {roomTemplateV1('badezimmer')}
-            {roomTemplateV1('schlafzimmer')}
+            <StyledMain>
+              {roomTemplateWG('wohnung')}
+              {roomTemplateV1('büro')}
+              {roomTemplateWZ('wohnzimmer')}
+              {roomTemplateV1('küche')}
+              {roomTemplateV1('badezimmer')}
+              {roomTemplateV1('schlafzimmer')}
+            </StyledMain>
             <Footer></Footer>
           </Route>
           <Route exact path="/klima">
@@ -267,4 +274,54 @@ function App() {
 }
 
 export default App
-const StyledApp = styled.div``
+
+const StyledApp = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+  @media only screen and (min-width: 1000px) {
+    height: 100vh;
+  }
+`
+const StyledMain = styled.main`
+  @media only screen and (min-width: 1000px) {
+    max-width: 1000px;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    height: 550px;
+    margin-right: 450px;
+  }
+`
+
+/*
+  max-width: 1000px;
+  display: flex;
+  flex-flow: column wrap;
+  flex-direction: row;
+  justify-content: center;
+*/
+
+/*
+display: flex;
+  flex-flow: column wrap;
+  flex-direction: row;
+  justify-content: center;
+
+  &:after {
+    content: '';
+    flex-basis: 100%;
+    width: 0;
+    order: 2;
+  }
+
+  &:before {
+    content: '';
+    flex-basis: 100%;
+    width: 0;
+    order: 2;
+  }
+
+*/

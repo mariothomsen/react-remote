@@ -141,7 +141,7 @@ const StyledUl = styled.ul`
   right: 0px;
   box-sizing: border-box;
   width: 100%;
-  animation: ${(props) => (props.animationState ? 'none' : 'b 0.3s')};
+  animation: ${(props) => (props.animationState ? 'none' : 'b 0.1s')};
   animation-fill-mode: initial;
   font-size: 13px;
   color: white;
