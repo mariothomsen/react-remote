@@ -26,6 +26,13 @@ import Footer from './components/Footer'
 import FloatGraph from './components/widgets/FloatGraph'
 
 function App() {
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    document.title = 'D // Zuhause'
+    console.log('Serve development')
+  } else {
+    console.log('Serve production')
+  }
+
   //
   const {
     apiStates,
