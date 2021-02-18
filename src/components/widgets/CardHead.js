@@ -1,16 +1,33 @@
 import styled from 'styled-components/macro'
+import { FaUnlockAlt } from 'react-icons/fa'
 
 export default CardHead
 
 function CardHead({ roomData }) {
   function generateInfos(info, roomData) {
     var output = info.value
+
     if (info.type === 'temp') {
       output = parseFloat(output).toFixed(1)
     }
+
     if (info.type === 'humidity') {
       output = parseFloat(output).toFixed(0)
     }
+
+    if (info.type === 'window') {
+      if (info.value) {
+        return (
+          <>
+            <FaUnlockAlt color="red" size="8" /> <span>Fenster offen</span>{' '}
+            {info.append}
+          </>
+        )
+      } else {
+        return null
+      }
+    }
+
     if (info.type === 'currentPlaying') {
       if (!roomData.radioValue) {
         return null
@@ -23,6 +40,7 @@ function CardHead({ roomData }) {
       output = output.replace('Deutschlandfunk Nova', 'DLF Nova')
       output = `${output}   `
     }
+
     return `${info.prepand}${output}${info.append}`
   }
 

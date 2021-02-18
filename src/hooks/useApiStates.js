@@ -71,12 +71,21 @@ export default function useNodeStates() {
       schlafzimmer: 'G0911W0794162UBK',
     }
 
+    const windowContacts = {
+      wohnzimmer: 'contact_197c63',
+      küche: 'contact_18de74',
+      badezimmer: 'contact_18de81',
+      schlafzimmer: 'contact_193593',
+      büro: 'contact_18de48',
+    }
+
     const nodes = [
       /* Büro */
       'javascript.0.klima.büroTemp',
       'javascript.0.klima.büroTargetTemp',
       'javascript.0.lights.büro.current',
       'javascript.0.klima.büroHumidity',
+      'maxcube.0.devices.' + windowContacts['büro'] + '.opened',
       'alexa2.0.Echo-Devices.' + echos['büro'] + '.Player.volume',
       'alexa2.0.Echo-Devices.' + echos['büro'] + '.Player.currentState',
       'alexa2.0.Echo-Devices.' + echos['büro'] + '.Player.currentArtist',
@@ -85,6 +94,7 @@ export default function useNodeStates() {
       'javascript.0.klima.kücheTargetTemp',
       'javascript.0.lights.küche.current',
       'javascript.0.klima.kücheHumidity',
+      'maxcube.0.devices.' + windowContacts['küche'] + '.opened',
       'alexa2.0.Echo-Devices.' + echos['küche'] + '.Player.volume',
       'alexa2.0.Echo-Devices.' + echos['küche'] + '.Player.currentState',
       'alexa2.0.Echo-Devices.' + echos['küche'] + '.Player.currentArtist',
@@ -93,6 +103,7 @@ export default function useNodeStates() {
       'javascript.0.klima.badezimmerTargetTemp',
       'javascript.0.lights.badezimmer.current',
       'javascript.0.klima.badezimmerHumidity',
+      'maxcube.0.devices.' + windowContacts['badezimmer'] + '.opened',
       'alexa2.0.Echo-Devices.' + echos['badezimmer'] + '.Player.volume',
       'alexa2.0.Echo-Devices.' + echos['badezimmer'] + '.Player.currentState',
       'alexa2.0.Echo-Devices.' + echos['badezimmer'] + '.Player.currentArtist',
@@ -101,6 +112,7 @@ export default function useNodeStates() {
       'javascript.0.klima.schlafzimmerTargetTemp',
       'javascript.0.lights.schlafzimmer.current',
       'javascript.0.klima.schlafzimmerHumidity',
+      'maxcube.0.devices.' + windowContacts['schlafzimmer'] + '.opened',
       'alexa2.0.Echo-Devices.' + echos['schlafzimmer'] + '.Player.volume',
       'alexa2.0.Echo-Devices.' + echos['schlafzimmer'] + '.Player.currentState',
       'alexa2.0.Echo-Devices.' +
@@ -112,6 +124,7 @@ export default function useNodeStates() {
       'javascript.0.lights.wohnzimmer.current',
       'javascript.0.lights.terrasse.current',
       'javascript.0.klima.wohnzimmerHumidity',
+      'maxcube.0.devices.' + windowContacts['wohnzimmer'] + '.opened',
       'alexa2.0.Echo-Devices.' + echos['wohnzimmer'] + '.Player.volume',
       'alexa2.0.Echo-Devices.' + echos['wohnzimmer'] + '.Player.currentState',
       'alexa2.0.Echo-Devices.' + echos['wohnzimmer'] + '.Player.currentArtist',
