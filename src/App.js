@@ -59,7 +59,7 @@ function App() {
 
     const isFullscreen = window.location.search.split('popup=')[1]
     if (isFullscreen === 'true') {
-      var url = 'http://localhost:3000/'
+      var url = 'http://james'
       window.open(
         url,
         'window',
@@ -216,8 +216,8 @@ function App() {
             <Header></Header>
             <StyledMain>
               {roomTemplateWG('wohnung')}
-              {roomTemplateV1('büro')}
               {roomTemplateWZ('wohnzimmer')}
+              {roomTemplateV1('büro')}
               {roomTemplateV1('küche')}
               {roomTemplateV1('badezimmer')}
               {roomTemplateV1('schlafzimmer')}
@@ -249,6 +249,7 @@ function App() {
                 url="http://192.168.178.60:8082/flot/index.html?range=1440&zoom=false&axeX=lines&axeY=inside&hoverDetail=true&aggregate=onchange&chartType=step&live=30&instance=sql.0&l%5B0%5D%5Bid%5D=javascript.0.klima.terasseTemp&l%5B0%5D%5Boffset%5D=0&l%5B0%5D%5Baggregate%5D=minmax&l%5B0%5D%5Bcolor%5D=%23E29804&l%5B0%5D%5Bthickness%5D=3&l%5B0%5D%5Bshadowsize%5D=3&l%5B0%5D%5Binstance%5D=sql.0&l%5B0%5D%5Byaxe%5D=right&l%5B0%5D%5Bxaxe%5D=bottom&l%5B0%5D%5Bname%5D=Au%C3%9Fentemperatur&l%5B0%5D%5Bunit%5D=%C2%B0&l%5B0%5D%5BcommonYAxis%5D=1&l%5B0%5D%5BignoreNull%5D=true&l%5B0%5D%5BafterComma%5D=2&l%5B0%5D%5Bdashes%5D=false&l%5B0%5D%5BdashLength%5D=10&l%5B0%5D%5BspaceLength%5D=10&l%5B0%5D%5Bxticks%5D=1&l%5B0%5D%5Byticks%5D=1&l%5B0%5D%5BchartType%5D=line&aggregateType=step&aggregateSpan=300&relativeEnd=now&timeType=relative&noBorder=noborder&bg=%23242424&useComma=true&noedit=false&animation=300&window_bg=%23242424&x_labels_color=%23fca43c&y_labels_color=%23fca43c&border_color=%23242424&barColor=%23fe7878&barLabels=middle&barWidth=100&barFontSize=100&titlePos=top%3A35%3Bleft%3A65&legend=sw&legColumns=5&legBgOpacity=0.5&timeFormat=%25H%3A%25M"
               />
             </Card>
+            <Footer></Footer>
           </Route>
         </Switch>
       </StyledApp>
@@ -281,12 +282,11 @@ const StyledApp = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  width: 100%;
   flex-direction: column;
   @media only screen and (min-width: 1000px) {
-    height: 100vh;
+    min-height: 100vh;
   }
-  width: 100%;
 `
 const StyledMain = styled.main`
   width: 100%;

@@ -1,14 +1,16 @@
 import styled from 'styled-components/macro'
 import { ReactComponent as Logo } from '../assets/logo_circle.svg'
-
+import { Link } from 'react-router-dom'
 export default Footer
 
 function Footer({}) {
   return (
     <StyledDiv>
-      <a href="/klima">Klima-Übersicht</a>
-      <Logo width="30"></Logo>
-      <a href="/klima">Einstellungen</a>
+      <Link to="/klima">Klima-Übersicht</Link>
+      <Link to="/">
+        <Logo width="30"></Logo>
+      </Link>
+      <Link to="/settings">Einstellungen</Link>
     </StyledDiv>
   )
 }
@@ -26,8 +28,7 @@ const StyledDiv = styled.div`
   max-width: 930px;
 
   a {
-    padding: 0 10px;
-    width: 100px;
+    min-width: 60px;
     color: #c7c7c7;
     text-decoration: none;
     font-size: 9px;
