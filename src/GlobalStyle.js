@@ -17,6 +17,14 @@ export default createGlobalStyle`
   input, textarea, button {
     font-size: 1em;
   }
+  
+  input[type='range'] {
+    pointer-events: none;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    pointer-events: auto;
+  }
 
   :root{
     --color-primary: #ffaa1e;
