@@ -49,18 +49,23 @@ const StyledSlider = styled.input`
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     background: var(--color-primary);
     cursor: pointer;
     border-radius: 50%;
     border: 5px solid #242424;
+
+    @media only screen and (max-width: 550px) {
+      width: 32px;
+      height: 32px;
+    }
   }
 
   &::-moz-range-thumb {
     appearance: none;
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
     background: var(--color-primary);
     cursor: pointer;
     border-radius: 50%;
