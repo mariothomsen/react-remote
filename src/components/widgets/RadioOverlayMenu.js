@@ -1,6 +1,5 @@
 import styled from 'styled-components/macro'
 import { AiOutlinePoweroff, AiOutlineStepForward } from 'react-icons/ai'
-import { GiFastForwardButton } from 'react-icons/gi'
 
 function handleMenuClick(item, roomData) {
   roomData.updateApiNode(roomData.radioHandler, item.targetState)
@@ -11,16 +10,6 @@ function handleMainButtonClick(roomData, modifier) {
   roomData.updateApiNode(roomData.radioHandler, roomData.name + modifier)
   roomData.updateLocalNode(roomData.radioNode, false)
 }
-
-// function radioOn(roomData) {
-//   roomData.updateApiNode(roomData.radioHandler, roomData.name + '.2')
-//   roomData.updateLocalNode(roomData.radioNode, false)
-// }
-
-// function nextRadio(roomData) {
-//   roomData.updateApiNode(roomData.radioHandler, roomData.name + '.1')
-//   roomData.updateLocalNode(roomData.radioNode, false)
-// }
 
 export default function RadioOverlayMenu({ roomData }) {
   return (
@@ -114,15 +103,3 @@ const StyledLayout = styled.div`
     transition: color 0.3s ease-in;
   }
 `
-
-/*
-  background: linear-gradient(
-    to left,
-    rgb(0 0 0) 0%,
-    var(--color-primary) 50%,
-    rgb(0 0 0) 100%
-  )
-  left bottom #000 no-repeat;
-background-size: 100% 1px; 
-
-*/

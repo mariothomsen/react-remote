@@ -34,26 +34,3 @@ const StyledOverlay = styled.div`
   transition: opacity 0.2s ease-in;
   padding: 30px;
 `
-
-/*
-display: ${(props) => (props.status ? 'grid' : 'none')};
-z-index: ${(props) => (props.status ? '1000' : '-1000')};
-*/
-/*
-
-export default function Overlay({ className, status, children, onClick }) {
-  return status ? (
-    <StyledOverlay
-      data-testid="TestOverlay"
-      className={className}
-      onClick={onClick}
-    >
-      {children}
-    </StyledOverlay>
-  ) : (
-    ''
-  )
-}
-
-
-*/

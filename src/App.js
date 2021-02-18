@@ -52,9 +52,8 @@ function App() {
     setOverlayContent,
   } = useOverlay()
 
-  // On fist load
+  /* ON FIRST LOAD */
   useEffect(() => {
-    console.log('OnLoad...', apiStates)
     loadApiStates()
 
     const isFullscreen = window.location.search.split('popup=')[1]
@@ -70,7 +69,7 @@ function App() {
     }
   }, [])
 
-  // Refresh states
+  /* REFRESH STATES INTERVAL */
   var interval
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -269,7 +268,6 @@ function App() {
   }
 
   function handleTVClick(roomData) {
-    console.log(roomData.tvState)
     roomData.tvState
       ? updateApiState(roomData.tvHandler, 'powerOff')
       : updateApiState(roomData.tvHandler, 'powerOn')
@@ -298,33 +296,3 @@ const StyledMain = styled.main`
     height: 550px;
   }
 `
-
-/*
-  max-width: 1000px;
-  display: flex;
-  flex-flow: column wrap;
-  flex-direction: row;
-  justify-content: center;
-*/
-
-/*
-display: flex;
-  flex-flow: column wrap;
-  flex-direction: row;
-  justify-content: center;
-
-  &:after {
-    content: '';
-    flex-basis: 100%;
-    width: 0;
-    order: 2;
-  }
-
-  &:before {
-    content: '';
-    flex-basis: 100%;
-    width: 0;
-    order: 2;
-  }
-
-*/

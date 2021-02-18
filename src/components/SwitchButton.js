@@ -45,15 +45,3 @@ const StyledButton = styled.button`
     padding-bottom: 2px;
   }
 `
-
-/*
- transform: scale(0.9);
-    transition: transform 0.3s ease-out;
-      background-color: #a16e28;
-    transition: background-color 0.3s ease-out;
-    transform: scale(0.9);
-    transition: transform 0.1s ease-out;
-
-    background-color: ${props => props.value ? "palevioletred" : "blue"};
-
-*/

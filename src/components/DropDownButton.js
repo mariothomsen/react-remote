@@ -1,6 +1,5 @@
 import styled from 'styled-components/macro'
-import { useEffect, useState } from 'react'
-import { BsThreeDotsVertical } from 'react-icons/bs'
+import { useState } from 'react'
 
 export default DropDownButton
 
@@ -82,26 +81,6 @@ const StyledDropDownButton = styled.button`
   span {
     margin-top: 3px;
     letter-spacing: 0.5px;
-  }
-`
-
-const StyledButtonArea = styled.div`
-  position: relative;
-  display: grid;
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
-  border-bottom-right-radius: ${(props) => (props.menuState ? '0px' : '3px')};
-  border-bottom-left-radius: ${(props) => (props.menuState ? '0px' : '3px')};
-  transition: border-bottom-right-radius 0.3s ease-out,
-    border-bottom-left-radius 0.3s ease-out;
-  background-color: var(--color-primary);
-
-  height: 50px;
-  &:active {
-    transform: scale(0.75);
-    transition: transform 1s ease-out ease-out;
-    transform: scale(1);
-    transition: transform 1s ease-out ease-out;
   }
 `
 

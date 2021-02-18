@@ -3,12 +3,8 @@ import styled from 'styled-components/macro'
 export default CardHead
 
 function CardHead({ roomData }) {
-  //
   function generateInfos(info, roomData) {
-    // console.log('output', output)
-    // console.log(roomData.name + ' : ', info)
     var output = info.value
-    // if (output.length > 0) {
     if (info.type === 'temp') {
       output = parseFloat(output).toFixed(1)
     }
@@ -28,9 +24,6 @@ function CardHead({ roomData }) {
       output = `${output}   `
     }
     return `${info.prepand}${output}${info.append}`
-    // } else {
-    //   return null
-    // }
   }
 
   return (
@@ -63,12 +56,3 @@ const StyledInfos = styled.span`
     content: ' | ';
   }
 `
-// const StyledInfoText = styled.span`
-//   margin-left: 5px;
-//   text-transform: capitalize;
-//   font-size: 10px;
-
-//   > *:not(:last-child):after {
-//     content: ' | ';
-//   }
-// `
