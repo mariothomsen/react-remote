@@ -1,9 +1,10 @@
 import styled from 'styled-components/macro'
 import { ReactComponent as Logo } from '../assets/logo_circle.svg'
 import { Link } from 'react-router-dom'
+
 export default Footer
 
-function Footer({}) {
+function Footer() {
   return (
     <StyledDiv>
       <Link to="/klima">Klima-Übersicht</Link>

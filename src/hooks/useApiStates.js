@@ -1,7 +1,7 @@
 import switchApiState from '../services/switchApiState'
 import setApiState from '../services/setApiState'
 import getApiStates from '../services/getApiStates'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export default function useNodeStates() {
   const [apiStates, setApiStates] = useState([])
@@ -56,7 +56,6 @@ export default function useNodeStates() {
       { node: nodeToChange, value: newValue },
       ...apiStates.slice(index + 1),
     ])
-    console.log('NEW STATE:', apiStates)
   }
 
   /********************************************** */
@@ -134,7 +133,7 @@ export default function useNodeStates() {
     const url =
       'http://192.168.178.60:8087/get/system.adapter.admin.0.alive' + urlPart
 
-    console.log(url)
+    //console.log(url)
     getApiStates(url)
       .then((res) => res.json())
       .then((data) => setApiStates(buildNodeStates(data)))
@@ -149,7 +148,6 @@ export default function useNodeStates() {
         { node: data[entry]._id, value: data[entry].val },
       ]
     }
-    //console.log('State on Load ', nodeStates)
     return apiStates
   }
 }

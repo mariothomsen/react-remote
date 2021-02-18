@@ -1,9 +1,8 @@
 import styled from 'styled-components/macro'
-import { ReactComponent as Logo } from '../assets/logo_circle.svg'
 
 export default Header
 
-function Header({}) {
+function Header() {
   return <StyledDiv></StyledDiv>
 }
 

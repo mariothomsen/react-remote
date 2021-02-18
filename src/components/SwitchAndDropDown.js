@@ -1,28 +1,11 @@
 import styled from 'styled-components/macro'
-import { useEffect, useState, useMemo } from 'react'
+import { useState } from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 
 export default SwitchAndDropDown
 
 function SwitchAndDropDown({ children, layout, menu, onClick }) {
   const [menuState, setMenuState] = useState()
-
-  const DDMenu = () => {
-    return (
-      <StyledUl>
-        {menu.map((item) => (
-          <li onClick={() => handleMenuClick(item)}>
-            {item.icon ? (
-              item.icon
-            ) : (
-              <StyledColorIndicator bgColor={item.color} />
-            )}
-            <span>{item.text}</span>
-          </li>
-        ))}
-      </StyledUl>
-    )
-  }
 
   return (
     <StyledWrapper>
@@ -62,6 +45,7 @@ function SwitchAndDropDown({ children, layout, menu, onClick }) {
     setMenuState(false)
   }
 }
+
 const StyledWrapper = styled.div`
   position: relative;
 `

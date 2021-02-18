@@ -1,5 +1,4 @@
 import styled from 'styled-components/macro'
-import { AiOutlinePoweroff } from 'react-icons/ai'
 
 export default function FloatGraph({ url, headline }) {
   return (

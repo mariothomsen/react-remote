@@ -1,10 +1,4 @@
-import styled from 'styled-components/macro'
-import PropTypes from 'prop-types'
-import { v4 as uuidv4 } from 'uuid'
-import { FaBeer } from 'react-icons/fa'
-import { useEffect, useState } from 'react'
 import { HiLightBulb, HiOutlineLightBulb } from 'react-icons/hi'
-
 import SwitchAndDropDown from './../SwitchAndDropDown'
 import RadioSwitch from './../RadioSwitch'
 
@@ -42,11 +36,9 @@ export default function LightWidget({ roomData }) {
   function handleRadioChange(event) {
     var status = ''
     if (event.target.value === 'true') {
-      console.log('true')
       status = true
     } else {
       status = false
-      console.log('false')
     }
 
     let handlerValueApi = status ? roomData.name + '.on' : roomData.name + '.0'

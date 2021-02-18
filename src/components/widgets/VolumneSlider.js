@@ -1,5 +1,3 @@
-import styled from 'styled-components/macro'
-import { AiOutlinePoweroff } from 'react-icons/ai'
 import Slider from '../Slider'
 
 export default function VolumneSlider({ roomData }) {
