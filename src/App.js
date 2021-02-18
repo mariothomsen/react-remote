@@ -11,19 +11,19 @@ import useApiStates from './hooks/useApiStates'
 import useRoomData from './hooks/useRoomData'
 import useOverlay from './hooks/useOverlay'
 
+import Header from './components/Header'
+import Footer from './components/Footer'
 import SwitchButton from './components/SwitchButton'
 import Card from './components/Card'
-import CardHead from './components/widgets/CardHead'
 import Layout from './components/Layout'
 import Overlay from './components/Overlay'
 import DropDownButton from './components/DropDownButton'
-import Header from './components/Header'
 
+import CardHead from './components/widgets/CardHead'
 import LightWidget from './components/widgets/LightWidget'
 import RadioOverlayMenu from './components/widgets/RadioOverlayMenu'
 import HeatingOverlay from './components/widgets/HeatingOverlay'
 import VolumneSlider from './components/widgets/VolumneSlider'
-import Footer from './components/Footer'
 import FloatGraph from './components/widgets/FloatGraph'
 
 function App() {
@@ -52,27 +52,12 @@ function App() {
     setOverlayContent,
   } = useOverlay()
 
-  /* ON FIRST LOAD */
   useEffect(() => {
     loadApiStates()
-
-    const isFullscreen = window.location.search.split('popup=')[1]
-    if (isFullscreen === 'true') {
-      var url = 'http://james'
-      window.open(
-        url,
-        'window',
-        'toolbar=no, menubar=no, resizable=yes, height=' +
-          window.screen.height +
-          'px, width=500px'
-      )
-    }
   }, [])
 
-  /* REFRESH STATES INTERVAL */
   var interval
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     interval = setInterval(() => {
       loadApiStates()
     }, 5000)
@@ -81,126 +66,6 @@ function App() {
     }
   }, [apiStates])
 
-  function roomTemplateV1(roomName) {
-    return (
-      <Card>
-        <CardHead roomData={roomData[roomName]} />
-        <Layout layout="1fr 15px 1fr">
-          <Layout layout="1fr 15px 1fr">
-            <SwitchButton
-              onClick={() => handleRadioClick(roomData[roomName])}
-              value={roomData[roomName].radioValue}
-              children={<BiRadio size="15" />}
-            />
-            <div></div>
-            <SwitchButton
-              onClick={() => handleHeatingClick(roomData[roomName])}
-              value={false}
-              children={<RiTempColdLine size="15" />}
-            />
-          </Layout>
-          <div></div>
-          <LightWidget roomData={roomData[roomName]} />
-        </Layout>
-        <VolumneSlider
-          onChange={roomData[roomName]}
-          min="0"
-          max="100"
-          step="10"
-          roomData={roomData[roomName]}
-        ></VolumneSlider>
-      </Card>
-    )
-  }
-
-  function roomTemplateWZ(roomName) {
-    return (
-      <Card>
-        <CardHead roomData={roomData[roomName]} />
-        <Layout layout="1fr 15px 1fr">
-          <Layout layout="1fr 15px 1fr">
-            <SwitchButton
-              onClick={() => handleRadioClick(roomData[roomName])}
-              value={roomData[roomName].radioValue}
-              children={<BiRadio size="15" />}
-            />
-            <div></div>
-            <SwitchButton
-              onClick={() => handleHeatingClick(roomData[roomName])}
-              value={false}
-              children={<RiTempColdLine size="15" />}
-            />
-          </Layout>
-          <div></div>
-          <LightWidget roomData={roomData[roomName]} />
-        </Layout>
-        <br></br>
-        <Layout layout="1fr 15px 1fr ">
-          <SwitchButton
-            onClick={() => handleTVClick(roomData[roomName])}
-            value={roomData[roomName].tvState}
-            children={<FiMonitor size="15" />}
-          />
-          <div></div>
-          <LightWidget roomData={roomData['terrasse']} />
-        </Layout>
-        <VolumneSlider
-          onChange={roomData[roomName]}
-          min="0"
-          max="100"
-          step="10"
-          roomData={roomData[roomName]}
-        ></VolumneSlider>
-      </Card>
-    )
-  }
-  function handleMenuChange(node, value) {
-    roomData.updateApiNode(roomData.lightHandler, value)
-  }
-
-  function roomTemplateWG(roomName) {
-    return (
-      <Card>
-        <CardHead roomData={roomData[roomName]} />
-        <Layout layout="1fr 15px 1fr 15px 1fr ">
-          <SwitchButton
-            onClick={() => handleRadioClick(roomData['wohnung'])}
-            value={roomData['wohnung'].radioValue}
-            children={
-              <>
-                <BiRadio size="15" />
-                <span>Wohnung</span>
-              </>
-            }
-          />
-          <div></div>
-          <SwitchButton
-            onClick={() => handleRadioClick(roomData['südflügel'])}
-            value={roomData['südflügel'].radioValue}
-            children={
-              <>
-                <BiRadio size="15" />
-                <span>Südflügel</span>
-              </>
-            }
-          />
-          <div></div>
-          <DropDownButton
-            onClick={handleMenuChange}
-            menu={roomData[roomName].ddmenu}
-            children={
-              <>
-                <BsList size="15" />
-                <span>Szenen</span>
-              </>
-            }
-          />
-        </Layout>
-      </Card>
-    )
-  }
-
-  /** MAIN **/
   if (roomData['büro']) {
     return (
       <StyledApp className="App">
@@ -214,12 +79,12 @@ function App() {
             </Overlay>
             <Header></Header>
             <StyledMain>
-              {roomTemplateWG('wohnung')}
-              {roomTemplateWZ('wohnzimmer')}
-              {roomTemplateV1('büro')}
-              {roomTemplateV1('küche')}
-              {roomTemplateV1('badezimmer')}
-              {roomTemplateV1('schlafzimmer')}
+              {cardTemplateWhg('wohnung')}
+              {cardTemplateWhz('wohnzimmer')}
+              {cardTemplateBasic('büro')}
+              {cardTemplateBasic('küche')}
+              {cardTemplateBasic('badezimmer')}
+              {cardTemplateBasic('schlafzimmer')}
             </StyledMain>
             <Footer></Footer>
           </Route>
@@ -271,6 +136,126 @@ function App() {
     roomData.tvState
       ? updateApiState(roomData.tvHandler, 'powerOff')
       : updateApiState(roomData.tvHandler, 'powerOn')
+  }
+
+  function handleDropDownClick(node, value) {
+    roomData.updateApiNode(roomData.lightHandler, value)
+  }
+
+  function cardTemplateBasic(roomName) {
+    return (
+      <Card>
+        <CardHead roomData={roomData[roomName]} />
+        <Layout layout="1fr 15px 1fr">
+          <Layout layout="1fr 15px 1fr">
+            <SwitchButton
+              onClick={() => handleRadioClick(roomData[roomName])}
+              value={roomData[roomName].radioValue}
+              children={<BiRadio size="15" />}
+            />
+            <div></div>
+            <SwitchButton
+              onClick={() => handleHeatingClick(roomData[roomName])}
+              value={false}
+              children={<RiTempColdLine size="15" />}
+            />
+          </Layout>
+          <div></div>
+          <LightWidget roomData={roomData[roomName]} />
+        </Layout>
+        <VolumneSlider
+          onChange={roomData[roomName]}
+          min="0"
+          max="100"
+          step="10"
+          roomData={roomData[roomName]}
+        ></VolumneSlider>
+      </Card>
+    )
+  }
+
+  function cardTemplateWhg(roomName) {
+    return (
+      <Card>
+        <CardHead roomData={roomData[roomName]} />
+        <Layout layout="1fr 15px 1fr 15px 1fr ">
+          <SwitchButton
+            onClick={() => handleRadioClick(roomData['wohnung'])}
+            value={roomData['wohnung'].radioValue}
+            children={
+              <>
+                <BiRadio size="15" />
+                <span>Wohnung</span>
+              </>
+            }
+          />
+          <div></div>
+          <SwitchButton
+            onClick={() => handleRadioClick(roomData['südflügel'])}
+            value={roomData['südflügel'].radioValue}
+            children={
+              <>
+                <BiRadio size="15" />
+                <span>Südflügel</span>
+              </>
+            }
+          />
+          <div></div>
+          <DropDownButton
+            onClick={handleDropDownClick}
+            menu={roomData[roomName].ddmenu}
+            children={
+              <>
+                <BsList size="15" />
+                <span>Szenen</span>
+              </>
+            }
+          />
+        </Layout>
+      </Card>
+    )
+  }
+
+  function cardTemplateWhz(roomName) {
+    return (
+      <Card>
+        <CardHead roomData={roomData[roomName]} />
+        <Layout layout="1fr 15px 1fr">
+          <Layout layout="1fr 15px 1fr">
+            <SwitchButton
+              onClick={() => handleRadioClick(roomData[roomName])}
+              value={roomData[roomName].radioValue}
+              children={<BiRadio size="15" />}
+            />
+            <div></div>
+            <SwitchButton
+              onClick={() => handleHeatingClick(roomData[roomName])}
+              value={false}
+              children={<RiTempColdLine size="15" />}
+            />
+          </Layout>
+          <div></div>
+          <LightWidget roomData={roomData[roomName]} />
+        </Layout>
+        <br></br>
+        <Layout layout="1fr 15px 1fr ">
+          <SwitchButton
+            onClick={() => handleTVClick(roomData[roomName])}
+            value={roomData[roomName].tvState}
+            children={<FiMonitor size="15" />}
+          />
+          <div></div>
+          <LightWidget roomData={roomData['terrasse']} />
+        </Layout>
+        <VolumneSlider
+          onChange={roomData[roomName]}
+          min="0"
+          max="100"
+          step="10"
+          roomData={roomData[roomName]}
+        ></VolumneSlider>
+      </Card>
+    )
   }
 }
 

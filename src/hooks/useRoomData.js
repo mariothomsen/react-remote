@@ -17,6 +17,53 @@ const echos = {
   schlafzimmer: 'G0911W0794162UBK',
 }
 
+const windowContacts = {
+  wohnzimmer: 'contact_197c63',
+  küche: 'contact_18de74',
+  badezimmer: 'contact_18de81',
+  schlafzimmer: 'contact_193593',
+  büro: 'contact_18de48',
+}
+
+const radioMenu = (roomName) => [
+  {
+    node: 'javascript.0.handler.radio',
+    text: 'Hamburg Zwei',
+    targetState: roomName + '.s78204',
+    logo: s78204,
+  },
+  {
+    node: 'javascript.0.handler.radio',
+    text: 'Radio HH',
+    targetState: roomName + '.s18018',
+    logo: s18018,
+  },
+  {
+    node: 'javascript.0.handler.radio',
+    text: 'NDR Info',
+    targetState: roomName + '.s24885',
+    logo: s24885,
+  },
+  {
+    node: 'javascript.0.handler.radio',
+    text: 'Deutschlandfunk',
+    targetState: roomName + '.s42828',
+    logo: s42828,
+  },
+  {
+    node: 'javascript.0.handler.radio',
+    text: 'DLF Nova',
+    targetState: roomName + '.s120806',
+    logo: s120806,
+  },
+  {
+    node: 'javascript.0.handler.radio',
+    text: 'Bayern 2',
+    targetState: roomName + '.s24855',
+    logo: s24855,
+  },
+]
+
 export default function useRoomConfig(
   getApiState,
   updateApiState,
@@ -51,6 +98,14 @@ export default function useRoomConfig(
   roomData['wohnzimmer'] = {
     name: roomName,
     infos: [
+      {
+        value: getApiState(
+          'maxcube.0.devices.' + windowContacts['büro'] + '.opened'
+        ),
+        type: 'window',
+        prepand: ' ',
+        append: '\u00A0|',
+      },
       {
         value: getApiState(
           'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentArtist'
@@ -113,44 +168,7 @@ export default function useRoomConfig(
     ),
     radioNode:
       'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
-    radioMenu: [
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Hamburg Zwei',
-        targetState: roomName + '.s78204',
-        logo: s78204,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Radio HH',
-        targetState: roomName + '.s18018',
-        logo: s18018,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'NDR Info',
-        targetState: roomName + '.s24885',
-        logo: s24885,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Deutschlandfunk',
-        targetState: roomName + '.s42828',
-        logo: s42828,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'DLF Nova',
-        targetState: roomName + '.s120806',
-        logo: s120806,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Bayern 2',
-        targetState: roomName + '.s24855',
-        logo: s24855,
-      },
-    ],
+    radioMenu: radioMenu(roomName),
     heatingValue: getApiState('javascript.0.klima.' + roomName + 'TargetTemp'),
     heatingNode: 'javascript.0.klima.' + roomName + 'TargetTemp',
     heatingHandler: 'javascript.0.handler.heating',
@@ -165,6 +183,14 @@ export default function useRoomConfig(
   roomData['büro'] = {
     name: roomName,
     infos: [
+      {
+        value: getApiState(
+          'maxcube.0.devices.' + windowContacts[roomName] + '.opened'
+        ),
+        type: 'window',
+        prepand: ' ',
+        append: '\u00A0|',
+      },
       {
         value: getApiState(
           'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentArtist'
@@ -240,44 +266,7 @@ export default function useRoomConfig(
     ),
     radioNode:
       'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
-    radioMenu: [
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Hamburg Zwei',
-        targetState: roomName + '.s78204',
-        logo: s78204,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Radio HH',
-        targetState: roomName + '.s18018',
-        logo: s18018,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'NDR Info',
-        targetState: roomName + '.s24885',
-        logo: s24885,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Deutschlandfunk',
-        targetState: roomName + '.s42828',
-        logo: s42828,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'DLF Nova',
-        targetState: roomName + '.s120806',
-        logo: s120806,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Bayern 2',
-        targetState: roomName + '.s24855',
-        logo: s24855,
-      },
-    ],
+    radioMenu: radioMenu(roomName),
     heatingValue: getApiState('javascript.0.klima.' + roomName + 'TargetTemp'),
     heatingNode: 'javascript.0.klima.' + roomName + 'TargetTemp',
     heatingHandler: 'javascript.0.handler.heating',
@@ -296,6 +285,14 @@ export default function useRoomConfig(
     lightNode: 'javascript.0.lights.' + roomName + '.current',
     lightWidgetLayout: '2fr 1fr',
     lightMenu: [
+      {
+        value: getApiState(
+          'maxcube.0.devices.' + windowContacts[roomName] + '.opened'
+        ),
+        type: 'window',
+        prepand: ' ',
+        append: '\u00A0|',
+      },
       {
         node: 'javascript.0.handler.lights',
         text: 'Gemütlich',
@@ -386,44 +383,7 @@ export default function useRoomConfig(
     ),
     radioNode:
       'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
-    radioMenu: [
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Hamburg Zwei',
-        targetState: roomName + '.s78204',
-        logo: s78204,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Radio HH',
-        targetState: roomName + '.s18018',
-        logo: s18018,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'NDR Info',
-        targetState: roomName + '.s24885',
-        logo: s24885,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Deutschlandfunk',
-        targetState: roomName + '.s42828',
-        logo: s42828,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'DLF Nova',
-        targetState: roomName + '.s120806',
-        logo: s120806,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Bayern 2',
-        targetState: roomName + '.s24855',
-        logo: s24855,
-      },
-    ],
+    radioMenu: radioMenu(roomName),
     updateApiNode: updateApiState,
     updateLocalNode: updateLocalState,
   }
@@ -442,44 +402,7 @@ export default function useRoomConfig(
     ),
     radioNode:
       'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
-    radioMenu: [
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Hamburg Zwei',
-        targetState: roomName + '.s78204',
-        logo: s78204,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Radio HH',
-        targetState: roomName + '.s18018',
-        logo: s18018,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'NDR Info',
-        targetState: roomName + '.s24885',
-        logo: s24885,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Deutschlandfunk',
-        targetState: roomName + '.s42828',
-        logo: s42828,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'DLF Nova',
-        targetState: roomName + '.s120806',
-        logo: s120806,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Bayern 2',
-        targetState: roomName + '.s24855',
-        logo: s24855,
-      },
-    ],
+    radioMenu: radioMenu(roomName),
     updateApiNode: updateApiState,
     updateLocalNode: updateLocalState,
   }
@@ -500,6 +423,14 @@ function loadStandardRoomData(
   return {
     name: roomName,
     infos: [
+      {
+        value: getApiState(
+          'maxcube.0.devices.' + windowContacts[roomName] + '.opened'
+        ),
+        type: 'window',
+        prepand: ' ',
+        append: '\u00A0|',
+      },
       {
         value: getApiState(
           'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentArtist'
@@ -562,44 +493,7 @@ function loadStandardRoomData(
     ),
     radioNode:
       'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
-    radioMenu: [
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Hamburg Zwei',
-        targetState: roomName + '.s78204',
-        logo: s78204,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Radio HH',
-        targetState: roomName + '.s18018',
-        logo: s18018,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'NDR Info',
-        targetState: roomName + '.s24885',
-        logo: s24885,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Deutschlandfunk',
-        targetState: roomName + '.s42828',
-        logo: s42828,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'DLF Nova',
-        targetState: roomName + '.s120806',
-        logo: s120806,
-      },
-      {
-        node: 'javascript.0.handler.radio',
-        text: 'Bayern 2',
-        targetState: roomName + '.s24855',
-        logo: s24855,
-      },
-    ],
+    radioMenu: radioMenu(roomName),
     heatingValue: getApiState('javascript.0.klima.' + roomName + 'TargetTemp'),
     heatingNode: 'javascript.0.klima.' + roomName + 'TargetTemp',
     heatingHandler: 'javascript.0.handler.heating',

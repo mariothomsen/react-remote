@@ -4,6 +4,17 @@ import { Link } from 'react-router-dom'
 
 export default Footer
 
+function handlePopupClick() {
+  var url = 'http://james'
+  window.open(
+    url,
+    'window',
+    'toolbar=no, menubar=no, resizable=yes, height=' +
+      window.screen.height +
+      'px, width=500px'
+  )
+}
+
 function Footer() {
   return (
     <StyledDiv>
@@ -11,7 +22,7 @@ function Footer() {
       <Link to="/">
         <Logo width="30"></Logo>
       </Link>
-      <Link to="/settings">Einstellungen</Link>
+      <span onClick={handlePopupClick}>Open_Popup</span>
     </StyledDiv>
   )
 }
@@ -21,7 +32,7 @@ const StyledDiv = styled.div`
   }
   width: 100%;
   text-align: center;
-  margin: 5px 0 20px 0;
+  margin: 5px 0 20px -10px;
   height: 30px;
   display: flex;
   justify-content: center;
@@ -30,6 +41,17 @@ const StyledDiv = styled.div`
 
   a {
     min-width: 60px;
+    color: #c7c7c7;
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: 200;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+  }
+
+  span {
+    min-width: 60px;
+    text-align: left;
     color: #c7c7c7;
     text-decoration: none;
     font-size: 9px;
