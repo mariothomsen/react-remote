@@ -286,14 +286,6 @@ export default function useRoomConfig(
     lightWidgetLayout: '2fr 1fr',
     lightMenu: [
       {
-        value: getApiState(
-          'maxcube.0.devices.' + windowContacts[roomName] + '.opened'
-        ),
-        type: 'window',
-        prepand: ' ',
-        append: '\u00A0|',
-      },
-      {
         node: 'javascript.0.handler.lights',
         text: 'Gemütlich',
         color: '#ffa10070',
