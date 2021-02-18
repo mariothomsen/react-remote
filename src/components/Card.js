@@ -20,7 +20,3 @@ const StyledDiv = styled.div`
     box-sizing: border-box;
   }
 `
-/*
-
-
-*/
