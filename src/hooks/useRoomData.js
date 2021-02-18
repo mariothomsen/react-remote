@@ -239,7 +239,7 @@ export default function useRoomConfig(
         node: 'javascript.0.handler.lights',
         text: 'Normal II',
         color: 'var(--color-primary)',
-        targetState: roomName + '.2',
+        targetState: roomName + '.7',
       },
       {
         node: 'javascript.0.handler.lights',
