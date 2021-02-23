@@ -1,3 +1,4 @@
 export default function switchApiState(node) {
-  fetch('http://192.168.178.60:8087/toggle/' + node)
+  const url = process.env.REACT_APP_BE_BASE_URL + '/toggle/' + node
+  fetch(url)
 }
