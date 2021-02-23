@@ -1,3 +1,5 @@
 export default function setApiState(node, value) {
-  fetch('http://192.168.178.60:8087/set/' + node + '?value=' + value)
+  const url =
+    process.env.REACT_APP_BE_BASE_URL + '/set/' + node + '?value=' + value
+  fetch(url)
 }

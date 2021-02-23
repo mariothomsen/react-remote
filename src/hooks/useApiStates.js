@@ -2,7 +2,7 @@ import switchApiState from '../services/switchApiState'
 import setApiState from '../services/setApiState'
 import getApiStates from '../services/getApiStates'
 import { useState } from 'react'
-
+import exampleResponse from '../data/exampleResponse.json'
 export default function useNodeStates() {
   const [apiStates, setApiStates] = useState([])
 
@@ -143,14 +143,16 @@ export default function useNodeStates() {
     nodes.forEach((node) => {
       urlPart += ',' + node
     })
-    const url =
-      'http://192.168.178.60:8087/get/system.adapter.admin.0.alive' + urlPart
 
-    //console.log(url)
-    getApiStates(url)
-      .then((res) => res.json())
-      .then((data) => setApiStates(buildNodeStates(data)))
-      .catch((error) => console.log(error))
+    if (process.env.REACT_APP_LOAD_EXAMPLE_DATA === 'true') {
+      console.log('Load dummy data...')
+      setApiStates(buildNodeStates(exampleResponse))
+    } else {
+      getApiStates(urlPart)
+        .then((res) => res.json())
+        .then((data) => setApiStates(buildNodeStates(data)))
+        .catch((error) => console.log(error))
+    }
   }
 
   function buildNodeStates(data) {
