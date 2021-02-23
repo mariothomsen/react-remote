@@ -28,7 +28,7 @@ import FloatGraph from './components/widgets/FloatGraph'
 
 function App() {
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-    document.title = 'D // Zuhause'
+    document.title = 'D // James'
   }
 
   const {
