@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export default Footer
 
 function handlePopupClick() {
-  var url = 'http://james'
+  var url = '/'
   window.open(
     url,
     'window',
@@ -22,7 +22,7 @@ function Footer() {
       <Link to="/">
         <Logo width="30"></Logo>
       </Link>
-      <span onClick={handlePopupClick}>Open_Popup</span>
+      <span onClick={handlePopupClick}>Open_As_Popup</span>
     </StyledDiv>
   )
 }
