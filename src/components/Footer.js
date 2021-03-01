@@ -58,5 +58,6 @@ const StyledDiv = styled.div`
     font-weight: 200;
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
+    cursor: pointer;
   }
 `
