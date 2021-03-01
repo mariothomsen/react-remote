@@ -17,7 +17,6 @@ export default function Overlay({ className, status, children, onClick }) {
 const StyledOverlay = styled.div`
   box-sizing: border-box;
   width: 100%;
-
   height: 100%;
   color: white;
   background-color: #000000e3;
@@ -27,7 +26,7 @@ const StyledOverlay = styled.div`
   justify-content: center;
   padding: 0 30px;
   font-size: 35px;
-  z-index: 1000;
+  z-index: 2000;
   opacity: ${(props) => (props.status ? '100' : '0')};
   visibility: ${(props) => (props.status ? 'visible' : 'hidden')};
   display: grid;
