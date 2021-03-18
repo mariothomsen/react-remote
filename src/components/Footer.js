@@ -18,7 +18,7 @@ function handlePopupClick() {
 function Footer() {
   return (
     <StyledDiv>
-      <Link to="/klima">Klima-Übersicht</Link>
+      <Link to="/klima">Klima_Übersicht</Link>
       <Link to="/">
         <Logo width="30"></Logo>
       </Link>
