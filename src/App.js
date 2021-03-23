@@ -26,6 +26,8 @@ import HeatingOverlay from './components/widgets/HeatingOverlay'
 import VolumneSlider from './components/widgets/VolumneSlider'
 import FloatGraph from './components/widgets/FloatGraph'
 
+import CardExtension from './components/CardExtension'
+
 function App() {
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
     document.title = 'D // James'
@@ -170,6 +172,25 @@ function App() {
           step="10"
           roomData={roomData[roomName]}
         ></VolumneSlider>
+        <CardExtension>
+          <Layout layout="1fr 15px 1fr">
+            <Layout layout="1fr 15px 1fr">
+              <SwitchButton
+                onClick={() => handleRadioClick(roomData[roomName])}
+                value={roomData[roomName].radioValue}
+                children={<BiRadio size="15" />}
+              />
+              <div></div>
+              <SwitchButton
+                onClick={() => handleHeatingClick(roomData[roomName])}
+                value={false}
+                children={<RiTempColdLine size="15" />}
+              />
+            </Layout>
+            <div></div>
+            <LightWidget roomData={roomData[roomName]} />
+          </Layout>
+        </CardExtension>
       </Card>
     )
   }
