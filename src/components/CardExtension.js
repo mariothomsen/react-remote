@@ -1,33 +1,23 @@
 import styled from 'styled-components/macro'
-import { useState } from 'react'
 
 export default CardExtension
 
-function CardExtension({ children, initialState }) {
+function CardExtension({ children, extended, expandedHeight }) {
   return (
-    <StyledDiv extensionState={initialState}>
+    <StyledDiv expandedHeight={expandedHeight} extensionState={extended}>
       <StyledContent>{children}</StyledContent>
     </StyledDiv>
   )
 }
 
-/* accordion */
 const StyledDiv = styled.div`
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  text-align: left;
-  border: none;
-  outline: none;
-  transition: 0.4s;
-  display: ${(props) => (props.extensionState ? 'block' : 'none')};
+  overflow: hidden;
+  max-height: 0px;
+  max-height: ${(props) =>
+    props.extensionState ? props.expandedHeight : '0px'};
+  transition: max-height 0.2s ease-out;
 `
 
 const StyledContent = styled.div`
-  padding: 0 18px;
-
-  overflow: hidden;
-  background-color: #f1f1f1;
+  margin-top: 15px;
 `
