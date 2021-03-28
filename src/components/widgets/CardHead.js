@@ -1,9 +1,10 @@
 import styled from 'styled-components/macro'
 import { FaUnlockAlt } from 'react-icons/fa'
+import { MdExpandMore } from 'react-icons/md'
 
 export default CardHead
 
-function CardHead({ roomData }) {
+function CardHead({ roomData, onClick }) {
   function generateInfos(info, roomData) {
     var output = info.value
 
@@ -45,8 +46,11 @@ function CardHead({ roomData }) {
   }
 
   return (
-    <StyledDiv>
-      <StyledHeadline>{roomData.name}</StyledHeadline>
+    <StyledDiv onClick={onClick}>
+      <StyledHeadline>
+        {roomData.name}
+        <StyledSettingsIcon size="18" />
+      </StyledHeadline>
       <StyledInfos>
         {roomData &&
           roomData.infos.map((info, index) => generateInfos(info, roomData))}
@@ -56,7 +60,8 @@ function CardHead({ roomData }) {
 }
 
 const StyledDiv = styled.div`
-  margin: 0px 0 15px 0;
+  margin: 0 0 15px 0;
+  cursor: pointer;
 `
 const StyledHeadline = styled.span`
   text-transform: uppercase;
@@ -64,6 +69,17 @@ const StyledHeadline = styled.span`
   font-size: 12px;
   font-weight: 300;
 `
+const StyledSettingsIcon = styled(MdExpandMore)`
+  opacity: 0;
+  margin: 0 0 2px 2px;
+  vertical-align: middle;
+  ${StyledDiv}:hover & {
+    opacity: 1;
+  }
+  transition: all 0.2s ease-out;
+  transition-delay: 0.2s;
+`
+
 const StyledInfos = styled.span`
   font-weight: 300;
   float: right;

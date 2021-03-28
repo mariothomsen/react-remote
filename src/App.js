@@ -199,27 +199,8 @@ function App() {
         ></VolumneSlider>
         <CardExtension
           extended={extensionState[roomName]}
-          expandedHeight="175px"
-        >
-          <Layout layout="1fr 15px 1fr">
-            <Layout layout="1fr 15px 1fr">
-              <SwitchButton
-                onClick={() => handleRadioClick(roomData[roomName])}
-                value={roomData[roomName].radioValue}
-                children={<BiRadio size="15" />}
-              />
-              <div></div>
-              <SwitchButton
-                onClick={() => handleHeatingClick(roomData[roomName])}
-                value={false}
-                children={<RiTempColdLine size="15" />}
-              />
-            </Layout>
-            <div></div>
-            <LightWidget roomData={roomData[roomName]} />
-          </Layout>
-          <Setting />
-        </CardExtension>
+          expandedHeight="75px"
+        ></CardExtension>
       </Card>
     )
   }
