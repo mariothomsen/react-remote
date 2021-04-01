@@ -5,6 +5,7 @@ import {
   s120806,
   s18018,
   s78204,
+  xBirds,
 } from '../components/radioLogos'
 
 const echos = {
@@ -61,6 +62,12 @@ const radioMenu = (roomName) => [
     text: 'Bayern 2',
     targetState: roomName + '.s24855',
     logo: s24855,
+  },
+  {
+    node: 'javascript.0.handler.radio',
+    text: 'Waldgeräusche',
+    targetState: roomName + '.xBirds',
+    logo: xBirds,
   },
 ]
 
