@@ -7,12 +7,11 @@ export default function Setting({ roomData }) {
       <StyledName>{roomSetting.text}</StyledName>
       <div></div>
       <StyledRadioSwitch
-        data-js={roomSetting.node}
         node={roomSetting.node}
         onChange={(event) => handleRadioChange(event, roomSetting.node)}
         currentValue={roomSetting.value}
-        mykey={roomData.name + 'setting'}
         buttonstyle="flat"
+        roomName={roomData.name}
         options={[
           {
             value: true,

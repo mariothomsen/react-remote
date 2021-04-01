@@ -18,7 +18,7 @@ export default function LightWidget({ roomData }) {
         node={roomData.lightHandler}
         onChange={handleRadioChange}
         currentValue={lightStatus}
-        mykey={roomData.name}
+        roomName={roomData.name}
         options={[
           {
             value: true,
