@@ -83,8 +83,9 @@ export default function useNodeStates() {
       /* Büro */
       'javascript.0.klima.büroTemp',
       'javascript.0.klima.büroTargetTemp',
-      'javascript.0.lights.büro.current',
       'javascript.0.klima.büroHumidity',
+      'javascript.0.lights.büro.current',
+      'javascript.0.lights.büro.autoMode',
       'maxcube.0.devices.' + windowContacts['büro'] + '.opened',
       'alexa2.0.Echo-Devices.' + echos['büro'] + '.Player.volume',
       'alexa2.0.Echo-Devices.' + echos['büro'] + '.Player.currentState',
@@ -92,8 +93,9 @@ export default function useNodeStates() {
       /* Küche */
       'javascript.0.klima.kücheTemp',
       'javascript.0.klima.kücheTargetTemp',
-      'javascript.0.lights.küche.current',
       'javascript.0.klima.kücheHumidity',
+      'javascript.0.lights.küche.current',
+      'javascript.0.lights.küche.autoMode',
       'maxcube.0.devices.' + windowContacts['küche'] + '.opened',
       'alexa2.0.Echo-Devices.' + echos['küche'] + '.Player.volume',
       'alexa2.0.Echo-Devices.' + echos['küche'] + '.Player.currentState',
@@ -101,8 +103,9 @@ export default function useNodeStates() {
       /* Badezimmer */
       'javascript.0.klima.badezimmerTemp',
       'javascript.0.klima.badezimmerTargetTemp',
-      'javascript.0.lights.badezimmer.current',
       'javascript.0.klima.badezimmerHumidity',
+      'javascript.0.lights.badezimmer.current',
+      'javascript.0.lights.badezimmer.autoMode',
       'maxcube.0.devices.' + windowContacts['badezimmer'] + '.opened',
       'alexa2.0.Echo-Devices.' + echos['badezimmer'] + '.Player.volume',
       'alexa2.0.Echo-Devices.' + echos['badezimmer'] + '.Player.currentState',
@@ -110,8 +113,9 @@ export default function useNodeStates() {
       /* Küche */
       'javascript.0.klima.schlafzimmerTemp',
       'javascript.0.klima.schlafzimmerTargetTemp',
-      'javascript.0.lights.schlafzimmer.current',
       'javascript.0.klima.schlafzimmerHumidity',
+      'javascript.0.lights.schlafzimmer.current',
+      'javascript.0.lights.schlafzimmer.autoMode',
       'maxcube.0.devices.' + windowContacts['schlafzimmer'] + '.opened',
       'alexa2.0.Echo-Devices.' + echos['schlafzimmer'] + '.Player.volume',
       'alexa2.0.Echo-Devices.' + echos['schlafzimmer'] + '.Player.currentState',
@@ -122,8 +126,9 @@ export default function useNodeStates() {
       'javascript.0.klima.wohnzimmerTemp',
       'javascript.0.klima.wohnzimmerTargetTemp',
       'javascript.0.lights.wohnzimmer.current',
-      'javascript.0.lights.terrasse.current',
       'javascript.0.klima.wohnzimmerHumidity',
+      'javascript.0.lights.terrasse.current',
+      'javascript.0.lights.wohnzimmer.autoMode',
       'maxcube.0.devices.' + windowContacts['wohnzimmer'] + '.opened',
       'alexa2.0.Echo-Devices.' + echos['wohnzimmer'] + '.Player.volume',
       'alexa2.0.Echo-Devices.' + echos['wohnzimmer'] + '.Player.currentState',
@@ -138,6 +143,8 @@ export default function useNodeStates() {
       'alexa2.0.Echo-Devices.' + echos['südflügel'] + '.Player.currentArtist',
       'javascript.0.klima.terasseTemp',
       'javascript.0.statusInfos.tempInnen',
+      'javascript.0.klima.autoMode',
+      'javascript.0.settings.radio.automatic',
     ]
     let urlPart = ''
     nodes.forEach((node) => {
@@ -163,6 +170,7 @@ export default function useNodeStates() {
         { node: data[entry]._id, value: data[entry].val },
       ]
     }
+    //console.log(apiStates)
     return apiStates
   }
 }

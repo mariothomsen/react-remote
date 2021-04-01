@@ -158,6 +158,13 @@ export default function useRoomConfig(
         targetState: roomName + '.3',
       },
     ],
+    settings: [
+      {
+        node: 'javascript.0.lights.' + roomName + '.autoMode',
+        value: getApiState('javascript.0.lights.' + roomName + '.autoMode'),
+        text: 'Autom. Licht',
+      },
+    ],
     volumneValue: getApiState(
       'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume'
     ),
@@ -254,6 +261,13 @@ export default function useRoomConfig(
         color: '#e3f2ff',
         icon: '',
         targetState: roomName + '.6',
+      },
+    ],
+    settings: [
+      {
+        node: 'javascript.0.lights.' + roomName + '.autoMode',
+        value: getApiState('javascript.0.lights.' + roomName + '.autoMode'),
+        text: 'Autom. Licht',
       },
     ],
     volumneValue: getApiState(
@@ -378,6 +392,18 @@ export default function useRoomConfig(
     radioMenu: radioMenu(roomName),
     updateApiNode: updateApiState,
     updateLocalNode: updateLocalState,
+    settings: [
+      {
+        node: 'javascript.0.klima.autoMode',
+        value: getApiState('javascript.0.klima.autoMode'),
+        text: 'Autom. Heizung',
+      },
+      {
+        node: 'javascript.0.settings.radio.automatic',
+        value: getApiState('javascript.0.settings.radio.automatic'),
+        text: 'Autom. Radio',
+      },
+    ],
   }
 
   /************************ SÜDFLÜGEL (custom) *************************/
@@ -473,6 +499,13 @@ function loadStandardRoomData(
         color: '#e3f2ff',
         icon: '',
         targetState: roomName + '.3',
+      },
+    ],
+    settings: [
+      {
+        node: 'javascript.0.lights.' + roomName + '.autoMode',
+        value: getApiState('javascript.0.lights.' + roomName + '.autoMode'),
+        text: 'Autom. Licht',
       },
     ],
     volumneValue: getApiState(

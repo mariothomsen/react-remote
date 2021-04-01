@@ -19,7 +19,7 @@ export default function RadioOverlayMenu({ roomData }) {
       <ul>
         {roomData.radioMenu.map((item) => (
           <li key={item.text} onClick={() => handleMenuClick(item, roomData)}>
-            <img src={item.logo} />
+            <img src={item.logo} alt={item.text} />
             {item.text}
           </li>
         ))}

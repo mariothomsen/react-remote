@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
 import { Route, Switch } from 'react-router-dom'
 
@@ -19,12 +19,15 @@ import Layout from './components/Layout'
 import Overlay from './components/Overlay'
 import DropDownButton from './components/DropDownButton'
 
+import Setting from './components/widgets/Setting'
 import CardHead from './components/widgets/CardHead'
 import LightWidget from './components/widgets/LightWidget'
 import RadioOverlayMenu from './components/widgets/RadioOverlayMenu'
 import HeatingOverlay from './components/widgets/HeatingOverlay'
 import VolumneSlider from './components/widgets/VolumneSlider'
 import FloatGraph from './components/widgets/FloatGraph'
+
+import CardExtension from './components/CardExtension'
 
 function App() {
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
@@ -58,6 +61,7 @@ function App() {
 
   var interval
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     interval = setInterval(() => {
       loadApiStates()
     }, 5000)
@@ -65,6 +69,15 @@ function App() {
       clearInterval(interval)
     }
   }, [apiStates])
+
+  const [extensionState, setExtensionState] = useState({
+    wohnzimmer: false,
+    wohnung: false,
+    büro: false,
+    küche: false,
+    schlafzimmer: false,
+    badezimmer: false,
+  })
 
   if (roomData['büro']) {
     return (
@@ -79,12 +92,18 @@ function App() {
             </Overlay>
             <Header></Header>
             <StyledMain>
-              {cardTemplateWhg('wohnung')}
-              {cardTemplateWhz('wohnzimmer')}
-              {cardTemplateBasic('büro')}
-              {cardTemplateBasic('küche')}
-              {cardTemplateBasic('badezimmer')}
-              {cardTemplateBasic('schlafzimmer')}
+              <Layout layout="1fr 1fr" desktopLayout="1fr">
+                <div>
+                  {cardTemplateWhg('wohnung')}
+                  {cardTemplateWhz('wohnzimmer')}
+                  {cardTemplateBasic('büro')}
+                </div>
+                <div>
+                  {cardTemplateBasic('küche')}
+                  {cardTemplateBasic('badezimmer')}
+                  {cardTemplateBasic('schlafzimmer')}
+                </div>
+              </Layout>
             </StyledMain>
             <Footer></Footer>
           </Route>
@@ -142,10 +161,19 @@ function App() {
     roomData.updateApiNode(roomData.lightHandler, value)
   }
 
+  function toggleExtension(roomName) {
+    let oldState = { ...extensionState } // unview all other...
+    oldState[roomName] = !extensionState[roomName]
+    setExtensionState(oldState)
+  }
+
   function cardTemplateBasic(roomName) {
     return (
       <Card>
-        <CardHead roomData={roomData[roomName]} />
+        <CardHead
+          roomData={roomData[roomName]}
+          onClick={() => toggleExtension(roomName)}
+        />
         <Layout layout="1fr 15px 1fr">
           <Layout layout="1fr 15px 1fr">
             <SwitchButton
@@ -170,6 +198,12 @@ function App() {
           step="10"
           roomData={roomData[roomName]}
         ></VolumneSlider>
+        <CardExtension
+          extended={extensionState[roomName]}
+          expandedHeight="75px"
+        >
+          <Setting roomData={roomData[roomName]} />
+        </CardExtension>
       </Card>
     )
   }
@@ -177,7 +211,10 @@ function App() {
   function cardTemplateWhg(roomName) {
     return (
       <Card>
-        <CardHead roomData={roomData[roomName]} />
+        <CardHead
+          roomData={roomData[roomName]}
+          onClick={() => toggleExtension(roomName)}
+        />
         <Layout layout="1fr 15px 1fr 15px 1fr ">
           <SwitchButton
             onClick={() => handleRadioClick(roomData['wohnung'])}
@@ -212,6 +249,12 @@ function App() {
             }
           />
         </Layout>
+        <CardExtension
+          extended={extensionState[roomName]}
+          expandedHeight="150px"
+        >
+          <Setting roomData={roomData[roomName]} />
+        </CardExtension>
       </Card>
     )
   }
@@ -219,7 +262,10 @@ function App() {
   function cardTemplateWhz(roomName) {
     return (
       <Card>
-        <CardHead roomData={roomData[roomName]} />
+        <CardHead
+          roomData={roomData[roomName]}
+          onClick={() => toggleExtension(roomName)}
+        />
         <Layout layout="1fr 15px 1fr">
           <Layout layout="1fr 15px 1fr">
             <SwitchButton
@@ -254,6 +300,12 @@ function App() {
           step="10"
           roomData={roomData[roomName]}
         ></VolumneSlider>
+        <CardExtension
+          extended={extensionState[roomName]}
+          expandedHeight="75px"
+        >
+          <Setting roomData={roomData[roomName]} />
+        </CardExtension>
       </Card>
     )
   }
@@ -278,6 +330,9 @@ const StyledMain = styled.main`
     display: flex;
     flex-flow: column wrap;
     align-content: space-between;
-    height: 550px;
   }
 `
+
+/*
+
+*/
