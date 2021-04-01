@@ -38,6 +38,11 @@ function CardHead({ roomData, onClick }) {
         'HH ZWEI'
       )
       output = output.replace('HAMBURG ZWEI', 'HH ZWEI')
+
+      output = output.replace(
+        'DLF Nova: Es ist kompliziert. Dazu guter Pop.',
+        'DLF Nova'
+      )
       output = output.replace('Deutschlandfunk Nova', 'DLF Nova')
       output = `${output}   `
     }
@@ -70,6 +75,7 @@ function CardHead({ roomData, onClick }) {
 const StyledDiv = styled.div`
   margin: 0 0 15px 0;
   cursor: pointer;
+  overflow: hidden;
 `
 const StyledHeadline = styled.span`
   text-transform: uppercase;

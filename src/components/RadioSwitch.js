@@ -5,21 +5,21 @@ export default function RadioSwitch({
   options,
   currentValue,
   onChange,
-  mykey,
   buttonstyle,
+  roomName,
 }) {
   return (
-    <StyledForm data-js={'x' + buttonstyle} buttonstyle={buttonstyle}>
+    <StyledForm data-js={'x' + roomName} buttonstyle={buttonstyle}>
       {options.map((option, index) => (
-        <StyledDiv key={'input' + node + index}>
+        <StyledDiv key={'lights' + node + index}>
           <input
-            id={mykey + '-' + index}
+            id={'lights' + roomName + index}
             onChange={onChange}
             type="radio"
             value={option.value}
             checked={option.value === currentValue}
           />
-          <label htmlFor={mykey + '-' + index}>{option.icon}</label>
+          <label htmlFor={'lights' + roomName + index}>{option.icon}</label>
         </StyledDiv>
       ))}
     </StyledForm>
