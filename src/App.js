@@ -325,6 +325,10 @@ const StyledApp = styled.div`
 `
 const StyledMain = styled.main`
   width: 100%;
+
+  > * {
+    margin: 15px;
+  }
   @media only screen and (min-width: 1000px) {
     max-width: 930px;
     display: flex;

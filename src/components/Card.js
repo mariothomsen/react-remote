@@ -10,8 +10,7 @@ const StyledDiv = styled.div`
   background-color: #242424;
   border-radius: 10px;
   padding: 15px;
-
-  margin: 16px;
+  margin: 0 0 15px 0;
   box-sizing: border-box;
 
   @media only screen and (min-width: 1000px) {
