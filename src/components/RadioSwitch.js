@@ -13,13 +13,13 @@ export default function RadioSwitch({
       {options.map((option, index) => (
         <StyledDiv key={node + index}>
           <input
-            id={keyForSwitch + index}
+            id={keyForSwitch + index + node}
             onChange={onChange}
             type="radio"
             value={option.value}
             checked={option.value === currentValue}
           />
-          <label htmlFor={keyForSwitch + index}>{option.icon}</label>
+          <label htmlFor={keyForSwitch + index + node}>{option.icon}</label>
         </StyledDiv>
       ))}
     </StyledForm>

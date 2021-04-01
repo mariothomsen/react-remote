@@ -134,7 +134,7 @@ export default function useNodeStates() {
       'alexa2.0.Echo-Devices.' + echos['wohnzimmer'] + '.Player.currentState',
       'alexa2.0.Echo-Devices.' + echos['wohnzimmer'] + '.Player.currentArtist',
       'javascript.0.statusInfos.tvon',
-      /* Wohnung */
+      /* Wohnung & Sonstiges */
       'alexa2.0.Echo-Devices.' + echos['wohnung'] + '.Player.volume',
       'alexa2.0.Echo-Devices.' + echos['wohnung'] + '.Player.currentState',
       'alexa2.0.Echo-Devices.' + echos['wohnung'] + '.Player.currentArtist',
