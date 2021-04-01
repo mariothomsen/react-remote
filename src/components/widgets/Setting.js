@@ -12,6 +12,7 @@ export default function Setting({ roomData }) {
         onChange={(event) => handleRadioChange(event, roomSetting.node)}
         currentValue={roomSetting.value}
         mykey={roomData.name + 'setting'}
+        buttonStyle="flat"
         options={[
           {
             value: true,
