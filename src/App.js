@@ -200,7 +200,7 @@ function App() {
         ></VolumneSlider>
         <CardExtension
           extended={extensionState[roomName]}
-          expandedHeight="75px"
+          expandedHeight="50px"
         >
           <Setting roomData={roomData[roomName]} />
         </CardExtension>
@@ -251,7 +251,7 @@ function App() {
         </Layout>
         <CardExtension
           extended={extensionState[roomName]}
-          expandedHeight="150px"
+          expandedHeight="100px"
         >
           <Setting roomData={roomData[roomName]} />
         </CardExtension>
@@ -302,7 +302,7 @@ function App() {
         ></VolumneSlider>
         <CardExtension
           extended={extensionState[roomName]}
-          expandedHeight="75px"
+          expandedHeight="50px"
         >
           <Setting roomData={roomData[roomName]} />
         </CardExtension>

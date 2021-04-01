@@ -6,9 +6,10 @@ export default function RadioSwitch({
   currentValue,
   onChange,
   mykey,
+  buttonstyle,
 }) {
   return (
-    <StyledForm>
+    <StyledForm data-js={'x' + buttonstyle} buttonstyle={buttonstyle}>
       {options.map((option, index) => (
         <StyledDiv key={'input' + node + index}>
           <input
@@ -31,18 +32,23 @@ const StyledDiv = styled.div`
 `
 
 const StyledForm = styled.div`
-  background-color: var(--color-primary);
+  background: ${(props) =>
+    props.buttonstyle === 'flat' ? 'none' : 'var(--color-primary)'};
+
+  font-weight: ${(props) => (props.buttonstyle === 'flat' ? '600' : '200')};
+  color: ${(props) => (props.buttonstyle === 'flat' ? 'green' : 'red')};
   width: 100%;
   display: flex;
-
   border-radius: 3px;
-  height: 50px;
+  height: ${(props) => (props.buttonstyle === 'flat' ? '30px' : '50px')};
+
   input[type='radio'] {
     display: none;
   }
 
   input[type='radio']:checked + label {
-    color: white !important;
+    color: ${(props) =>
+      props.buttonstyle === 'flat' ? 'var(--color-primary)' : 'white'};
     transition: color 0.3s ease-out;
   }
 
