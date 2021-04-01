@@ -38,6 +38,10 @@ function CardHead({ roomData, onClick }) {
         'HH ZWEI'
       )
       output = output.replace('HAMBURG ZWEI', 'HH ZWEI')
+      output = output.replace(
+        'Vogelgezwitscher, Waldgeräusche & Vogelstimmen',
+        'Waldgeräusche'
+      )
 
       output = output.replace(
         'DLF Nova: Es ist kompliziert. Dazu guter Pop.',
