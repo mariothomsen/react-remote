@@ -12,7 +12,7 @@ export default function Setting({ roomData }) {
         onChange={(event) => handleRadioChange(event, roomSetting.node)}
         currentValue={roomSetting.value}
         mykey={roomData.name + 'setting'}
-        buttonStyle="flat"
+        buttonstyle="flat"
         options={[
           {
             value: true,
@@ -41,7 +41,7 @@ export default function Setting({ roomData }) {
 }
 const StyledDiv = styled.div`
   display: grid;
-  grid-template-columns: 1fr 15px 1fr;
+  grid-template-columns: 2fr 15px 1fr;
   align-items: center;
   margin-bottom: 10px;
 `
