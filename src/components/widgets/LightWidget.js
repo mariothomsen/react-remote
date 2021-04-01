@@ -26,7 +26,7 @@ export default function LightWidget({ roomData }) {
           },
           {
             value: false,
-            icon: <HiOutlineLightBulb size="18" color="#886936" />,
+            icon: <HiOutlineLightBulb size="18" opacity="0.8" />,
           },
         ]}
       />
