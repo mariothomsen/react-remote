@@ -45,11 +45,19 @@ function CardHead({ roomData, onClick }) {
     return `${info.prepand}${output}${info.append}`
   }
 
+  function isClickable() {
+    if (onClick) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   return (
     <StyledDiv onClick={onClick}>
       <StyledHeadline>
         {roomData.name}
-        <StyledSettingsIcon size="18" />
+        <StyledSettingsIcon hasonclick={isClickable().toString()} size="18" />
       </StyledHeadline>
       <StyledInfos>
         {roomData &&
@@ -74,7 +82,7 @@ const StyledSettingsIcon = styled(MdExpandMore)`
   margin: 0 0 2px 2px;
   vertical-align: middle;
   ${StyledDiv}:hover & {
-    opacity: 1;
+    opacity: ${(props) => (props.hasonclick === 'true' ? '1' : '0')};
   }
   transition: all 0.2s ease-out;
   transition-delay: 0.2s;
@@ -90,3 +98,6 @@ const StyledInfos = styled.span`
     content: ' | ';
   }
 `
+/*
+    opacity: ${(props) => (props.hasonclick ? '1' : '0')};
+*/

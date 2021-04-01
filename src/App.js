@@ -72,6 +72,7 @@ function App() {
 
   const [extensionState, setExtensionState] = useState({
     wohnzimmer: false,
+    wohnung: false,
     büro: false,
     küche: false,
     schlafzimmer: false,
@@ -161,7 +162,7 @@ function App() {
   }
 
   function toggleExtension(roomName) {
-    let oldState = { ...extensionState }
+    let oldState = { ...extensionState } // unview all other...
     oldState[roomName] = !extensionState[roomName]
     setExtensionState(oldState)
   }
@@ -200,7 +201,9 @@ function App() {
         <CardExtension
           extended={extensionState[roomName]}
           expandedHeight="75px"
-        ></CardExtension>
+        >
+          <Setting roomData={roomData[roomName]} />
+        </CardExtension>
       </Card>
     )
   }
@@ -208,7 +211,10 @@ function App() {
   function cardTemplateWhg(roomName) {
     return (
       <Card>
-        <CardHead roomData={roomData[roomName]} />
+        <CardHead
+          roomData={roomData[roomName]}
+          onClick={() => toggleExtension(roomName)}
+        />
         <Layout layout="1fr 15px 1fr 15px 1fr ">
           <SwitchButton
             onClick={() => handleRadioClick(roomData['wohnung'])}
@@ -243,6 +249,12 @@ function App() {
             }
           />
         </Layout>
+        <CardExtension
+          extended={extensionState[roomName]}
+          expandedHeight="150px"
+        >
+          <Setting roomData={roomData[roomName]} />
+        </CardExtension>
       </Card>
     )
   }
@@ -250,7 +262,10 @@ function App() {
   function cardTemplateWhz(roomName) {
     return (
       <Card>
-        <CardHead roomData={roomData[roomName]} />
+        <CardHead
+          roomData={roomData[roomName]}
+          onClick={() => toggleExtension(roomName)}
+        />
         <Layout layout="1fr 15px 1fr">
           <Layout layout="1fr 15px 1fr">
             <SwitchButton
@@ -285,6 +300,12 @@ function App() {
           step="10"
           roomData={roomData[roomName]}
         ></VolumneSlider>
+        <CardExtension
+          extended={extensionState[roomName]}
+          expandedHeight="75px"
+        >
+          <Setting roomData={roomData[roomName]} />
+        </CardExtension>
       </Card>
     )
   }
