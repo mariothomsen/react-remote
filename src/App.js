@@ -30,22 +30,23 @@ import FloatGraph from './components/widgets/FloatGraph'
 import CardExtension from './components/CardExtension'
 
 function App() {
+
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
     document.title = 'D // James'
   }
 
   const {
-    apiStates,
-    getApiState,
-    updateApiState,
-    updateLocalState,
-    loadApiStates,
+    localNodes,
+    getLocalNode,
+    updateApiNode,
+    updateLocalNode,
+    loadApiNodeValues,
   } = useApiStates()
 
   const { roomData } = useRoomData(
-    getApiState,
-    updateApiState,
-    updateLocalState
+    getLocalNode,
+    updateApiNode,
+    updateLocalNode
   )
 
   const {
@@ -56,19 +57,20 @@ function App() {
   } = useOverlay()
 
   useEffect(() => {
-    loadApiStates()
+    loadApiNodeValues()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   var interval
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     interval = setInterval(() => {
-      loadApiStates()
+      loadApiNodeValues()
     }, 5000)
     return () => {
       clearInterval(interval)
     }
-  }, [apiStates])
+  }, [localNodes])
 
   const [extensionState, setExtensionState] = useState({
     wohnzimmer: false,
@@ -79,7 +81,33 @@ function App() {
     badezimmer: false,
   })
 
-  if (roomData['büro']) {
+  function toggleExtension(roomName) {
+    let oldState = { ...extensionState } // unview all other...
+    oldState[roomName] = !extensionState[roomName]
+    setExtensionState(oldState)
+  }
+
+  function handleRadioClick(roomData) {
+    setOverlayContent(<RadioOverlayMenu roomData={roomData}></RadioOverlayMenu>)
+    setOverlayStatus(true)
+  }
+
+  function handleHeatingClick(roomData) {
+    setOverlayContent(<HeatingOverlay roomData={roomData}></HeatingOverlay>)
+    setOverlayStatus(true)
+  }
+
+  function handleTVClick(roomData) {
+    roomData.tvState
+      ? updateLocalNode(roomData.tvHandler, 'powerOff')
+      : updateLocalNode(roomData.tvHandler, 'powerOn')
+  }
+
+  function handleDropDownClick(node, value) {
+    roomData.updateApiNode(roomData.lightHandler, value)
+  }
+
+  if (roomData) {
     return (
       <StyledApp className="App">
         <Switch>
@@ -141,32 +169,7 @@ function App() {
     return <div>Loading...</div>
   }
 
-  function handleRadioClick(roomData) {
-    setOverlayContent(<RadioOverlayMenu roomData={roomData}></RadioOverlayMenu>)
-    setOverlayStatus(true)
-  }
-
-  function handleHeatingClick(roomData) {
-    setOverlayContent(<HeatingOverlay roomData={roomData}></HeatingOverlay>)
-    setOverlayStatus(true)
-  }
-
-  function handleTVClick(roomData) {
-    roomData.tvState
-      ? updateApiState(roomData.tvHandler, 'powerOff')
-      : updateApiState(roomData.tvHandler, 'powerOn')
-  }
-
-  function handleDropDownClick(node, value) {
-    roomData.updateApiNode(roomData.lightHandler, value)
-  }
-
-  function toggleExtension(roomName) {
-    let oldState = { ...extensionState } // unview all other...
-    oldState[roomName] = !extensionState[roomName]
-    setExtensionState(oldState)
-  }
-
+  /* BASIC CARD */
   function cardTemplateBasic(roomName) {
     return (
       <Card>
@@ -208,6 +211,7 @@ function App() {
     )
   }
 
+  /* WOHNUNG CARD */
   function cardTemplateWhg(roomName) {
     return (
       <Card>
@@ -259,6 +263,7 @@ function App() {
     )
   }
 
+  /* WOHNZIMMER CARD */
   function cardTemplateWhz(roomName) {
     return (
       <Card>
@@ -323,6 +328,7 @@ const StyledApp = styled.div`
     min-height: 100vh;
   }
 `
+
 const StyledMain = styled.main`
   width: 100%;
 
@@ -336,7 +342,3 @@ const StyledMain = styled.main`
     align-content: space-between;
   }
 `
-
-/*
-
-*/

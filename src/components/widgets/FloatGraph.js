@@ -4,7 +4,7 @@ export default function FloatGraph({ url, headline }) {
   return (
     <StyledDiv>
       <span>{headline}</span>
-      <iframe src={url} seamless="" width="100%" height="400">
+      <iframe src={url} title={headline} seamless="" width="100%" height="400">
         <p>
           Ihr Browser kann leider keine eingebetteten Frames anzeigen: Sie
           können die eingebettete Seite über den folgenden Verweis aufrufen:

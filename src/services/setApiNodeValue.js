@@ -1,4 +1,4 @@
-export default function setApiState(node, value) {
+export default function setApiNodeValue(node, value) {
   const url =
     process.env.REACT_APP_BE_BASE_URL + '/set/' + node + '?value=' + value
   console.log(url)
