@@ -123,8 +123,8 @@ function App() {
               <Layout layout="1fr 1fr" desktopLayout="1fr">
                 <div>
                   {cardTemplateWhg('wohnung')}
-                  {cardTemplateWhz('wohnzimmer')}
                   {cardTemplateBasic('büro')}
+                  {cardTemplateWhz('wohnzimmer')}
                 </div>
                 <div>
                   {cardTemplateBasic('küche')}
