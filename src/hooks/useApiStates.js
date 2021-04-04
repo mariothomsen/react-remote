@@ -1,24 +1,22 @@
-import switchApiState from '../services/switchApiState'
-import setApiState from '../services/setApiState'
-import getApiStates from '../services/getApiStates'
+import setApiNodeValue from '../services/setApiNodeValue'
+import getApiNodeValues from '../services/getApiNodeValues'
 import { useState } from 'react'
 import exampleResponse from '../data/exampleResponse.json'
 export default function useNodeStates() {
-  const [apiStates, setApiStates] = useState([])
+  const [localNodes, setLocalNodes] = useState([])
 
   return {
-    apiStates,
-    setApiStates,
-    getApiState,
-    updateApiState,
-    updateLocalState,
-    toggleApiState,
-    loadApiStates,
+    localNodes,
+    setLocalNodes,
+    getLocalNode,
+    updateLocalNode,
+    updateApiNode,
+    loadApiNodeValues,
   }
 
-  function getApiState(nodeName) {
-    if (apiStates.length >= 1) {
-      let searchState = apiStates.filter((state) => state.node === nodeName)
+  function getLocalNode(nodeName) {
+    if (localNodes.length >= 1) {
+      let searchState = localNodes.filter((state) => state.node === nodeName)
       if (searchState.length) {
         return searchState[0].value
       } else {
@@ -29,38 +27,39 @@ export default function useNodeStates() {
     }
   }
 
-  function updateLocalState(nodeToChange, newValue) {
-    let index = apiStates.findIndex((state) => state.node === nodeToChange)
-    setApiStates([
-      ...apiStates.slice(0, index),
+  function updateLocalNode(nodeToChange, newValue) {
+    let index = localNodes.findIndex((state) => state.node === nodeToChange)
+    setLocalNodes([
+      ...localNodes.slice(0, index),
       { node: nodeToChange, value: newValue },
-      ...apiStates.slice(index + 1),
+      ...localNodes.slice(index + 1),
     ])
     console.log(
-      'updateNodeState: ' + nodeToChange + ', value: ' + newValue + ')'
+      'update local node: ' + nodeToChange + ', value: ' + newValue + ')'
     )
   }
 
-  function updateApiState(nodeToChange, newValue) {
-    setApiState(nodeToChange, newValue)
-    console.log('updateNodeState: ' + nodeToChange + ', value: ' + newValue)
+  function updateApiNode(nodeToChange, newValue) {
+    setApiNodeValue(nodeToChange, newValue)
+    console.log('update api node: ' + nodeToChange + ', value: ' + newValue)
   }
 
-  function toggleApiState(nodeToChange) {
-    switchApiState(nodeToChange)
-    let index = apiStates.findIndex((state) => state.node === nodeToChange)
-    let changedState = apiStates[index]
-    let newValue = !changedState.value
-    setApiStates([
-      ...apiStates.slice(0, index),
-      { node: nodeToChange, value: newValue },
-      ...apiStates.slice(index + 1),
-    ])
-  }
+  // function toggleApiState(nodeToChange) {
+  //   switchApiState(nodeToChange)
+  //   let index = localNodes.findIndex((state) => state.node === nodeToChange)
+  //   let changedState = localNodes[index]
+  //   let newValue = !changedState.value
+  //   setLocalNodes([
+  //     ...localNodes.slice(0, index),
+  //     { node: nodeToChange, value: newValue },
+  //     ...localNodes.slice(index + 1),
+  //   ])
+  // }
 
   /********************************************** */
 
-  function loadApiStates() {
+  function loadApiNodeValues() {
+
     const echos = {
       wohnung: 'b3facf1955ff465cb9a1581c8b15f6fd',
       südflügel: 'f4cf13c2be114f4fa0ff7a0a9e9530ac',
@@ -120,8 +119,8 @@ export default function useNodeStates() {
       'alexa2.0.Echo-Devices.' + echos['schlafzimmer'] + '.Player.volume',
       'alexa2.0.Echo-Devices.' + echos['schlafzimmer'] + '.Player.currentState',
       'alexa2.0.Echo-Devices.' +
-        echos['schlafzimmer'] +
-        '.Player.currentArtist',
+      echos['schlafzimmer'] +
+      '.Player.currentArtist',
       /* Wohnzimmer */
       'javascript.0.klima.wohnzimmerTemp',
       'javascript.0.klima.wohnzimmerTargetTemp',
@@ -153,24 +152,24 @@ export default function useNodeStates() {
 
     if (process.env.REACT_APP_LOAD_EXAMPLE_DATA === 'true') {
       console.log('Load dummy data...')
-      setApiStates(buildNodeStates(exampleResponse))
+      setLocalNodes(buildLocalNodeObj(exampleResponse))
     } else {
-      getApiStates(urlPart)
+      getApiNodeValues(urlPart)
         .then((res) => res.json())
-        .then((data) => setApiStates(buildNodeStates(data)))
+        .then((data) => setLocalNodes(buildLocalNodeObj(data)))
         .catch((error) => console.log(error))
     }
   }
 
-  function buildNodeStates(data) {
-    let apiStates = []
+  function buildLocalNodeObj(data) {
+    let localNodes = []
     for (let entry in data) {
-      apiStates = [
-        ...apiStates,
+      localNodes = [
+        ...localNodes,
         { node: data[entry]._id, value: data[entry].val },
       ]
     }
-    //console.log(apiStates)
-    return apiStates
+    //console.log(localNodes)
+    return localNodes
   }
 }
