@@ -1,5 +1,12 @@
-import { s42828, s24855, s24885, s120806, s18018, s78204, xBirds }
-  from '../components/radioLogos'
+import {
+  s42828,
+  s24855,
+  s24885,
+  s120806,
+  s18018,
+  s78204,
+  xBirds,
+} from '../components/radioLogos'
 
 const echos = {
   wohnung: 'b3facf1955ff465cb9a1581c8b15f6fd',
@@ -64,7 +71,6 @@ const basicRadioMenu = (roomName) => [
   },
 ]
 
-
 const basicLightMenu = (roomName) => [
   {
     node: 'javascript.0.handler.lights',
@@ -87,16 +93,19 @@ const basicLightMenu = (roomName) => [
   },
 ]
 
-
 const basicCardHeadInfos = (roomName, getLocalNode) => [
   {
-    value: getLocalNode('maxcube.0.devices.' + windowContacts['büro'] + '.opened'),
+    value: getLocalNode(
+      'maxcube.0.devices.' + windowContacts[roomName] + '.opened'
+    ),
     type: 'window',
     prepand: ' ',
     append: '\u00A0|',
   },
   {
-    value: getLocalNode('alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentArtist'),
+    value: getLocalNode(
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentArtist'
+    ),
     type: 'currentPlaying',
     prepand: ' ',
     append: '\u00A0|',
@@ -121,13 +130,11 @@ const basicCardHeadInfos = (roomName, getLocalNode) => [
   },
 ]
 
-
 export default function useRoomConfig(
   getLocalNode,
   updateApiNode,
   updateLocalNode
 ) {
-
   // DEFINE ROOM DATA
   var roomData = {}
 
@@ -152,7 +159,6 @@ export default function useRoomConfig(
     updateLocalNode
   )
 
-
   /************************ WOHNZIMMER (custom) *************************/
 
   let roomName = 'wohnzimmer'
@@ -173,11 +179,16 @@ export default function useRoomConfig(
         text: 'Autom. Licht',
       },
     ],
-    volumneValue: getLocalNode('alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume'),
+    volumneValue: getLocalNode(
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume'
+    ),
     volumneNode: 'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume',
     radioHandler: 'javascript.0.handler.radio',
-    radioValue: getLocalNode('alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState'),
-    radioNode: 'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
+    radioValue: getLocalNode(
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState'
+    ),
+    radioNode:
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
     radioMenu: basicRadioMenu(roomName),
     heatingValue: getLocalNode('javascript.0.klima.' + roomName + 'TargetTemp'),
     heatingNode: 'javascript.0.klima.' + roomName + 'TargetTemp',
@@ -185,7 +196,6 @@ export default function useRoomConfig(
     tvState: getLocalNode('javascript.0.statusInfos.tvon'),
     tvHandler: 'javascript.0.handler.tv',
   }
-
 
   /************************ Büro (custom) *************************/
 
@@ -240,11 +250,16 @@ export default function useRoomConfig(
         text: 'Autom. Licht',
       },
     ],
-    volumneValue: getLocalNode('alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume'),
+    volumneValue: getLocalNode(
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume'
+    ),
     volumneNode: 'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume',
     radioHandler: 'javascript.0.handler.radio',
-    radioValue: getLocalNode('alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState'),
-    radioNode: 'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
+    radioValue: getLocalNode(
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState'
+    ),
+    radioNode:
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
     radioMenu: basicRadioMenu(roomName),
     heatingValue: getLocalNode('javascript.0.klima.' + roomName + 'TargetTemp'),
     heatingNode: 'javascript.0.klima.' + roomName + 'TargetTemp',
@@ -252,7 +267,6 @@ export default function useRoomConfig(
     tvState: getLocalNode('javascript.0.statusInfos.tvon'),
     tvHandler: 'javascript.0.handler.tv',
   }
-
 
   /************************ TERRASSE (custom) *************************/
 
@@ -268,7 +282,6 @@ export default function useRoomConfig(
     lightMenu: basicLightMenu(roomName),
   }
 
-
   /************************ WOHNUNG (custom) *************************/
 
   roomName = 'wohnung'
@@ -276,13 +289,19 @@ export default function useRoomConfig(
     name: roomName,
     infos: [
       {
-        value: getLocalNode('alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentArtist'),
+        value: getLocalNode(
+          'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentArtist'
+        ),
         type: 'currentPlaying',
         prepand: ' ',
         append: '\u00A0|',
       },
       {
-        value: getLocalNode('alexa2.0.Echo-Devices.' + echos['südflügel'] + '.Player.currentArtist'),
+        value: getLocalNode(
+          'alexa2.0.Echo-Devices.' +
+            echos['südflügel'] +
+            '.Player.currentArtist'
+        ),
         type: 'currentPlaying',
         prepand: ' ',
         append: '\u00A0|',
@@ -320,11 +339,16 @@ export default function useRoomConfig(
         targetState: roomName + '.2',
       },
     ],
-    volumneValue: getLocalNode('alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume'),
+    volumneValue: getLocalNode(
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume'
+    ),
     volumneNode: 'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume',
     radioHandler: 'javascript.0.handler.radio',
-    radioValue: getLocalNode('alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState'),
-    radioNode: 'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
+    radioValue: getLocalNode(
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState'
+    ),
+    radioNode:
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
     radioMenu: basicRadioMenu(roomName),
     updateApiNode,
     updateLocalNode,
@@ -342,17 +366,21 @@ export default function useRoomConfig(
     ],
   }
 
-
   /************************ SÜDFLÜGEL (custom) *************************/
 
   roomName = 'südflügel'
   roomData['südflügel'] = {
     name: roomName,
-    volumneValue: getLocalNode('alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume'),
+    volumneValue: getLocalNode(
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume'
+    ),
     volumneNode: 'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume',
     radioHandler: 'javascript.0.handler.radio',
-    radioValue: getLocalNode('alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState'),
-    radioNode: 'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
+    radioValue: getLocalNode(
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState'
+    ),
+    radioNode:
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
     radioMenu: basicRadioMenu(roomName),
     updateApiNode,
     updateLocalNode,
@@ -360,7 +388,6 @@ export default function useRoomConfig(
   return {
     roomData,
   }
-
 }
 
 /************************ loadStandardRoomData *************************/
@@ -386,11 +413,16 @@ function loadStandardRoomData(
         text: 'Autom. Licht',
       },
     ],
-    volumneValue: getLocalNode('alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume'),
+    volumneValue: getLocalNode(
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume'
+    ),
     volumneNode: 'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume',
     radioHandler: 'javascript.0.handler.radio',
-    radioValue: getLocalNode('alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState'),
-    radioNode: 'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
+    radioValue: getLocalNode(
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState'
+    ),
+    radioNode:
+      'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentState',
     radioMenu: basicRadioMenu(roomName),
     heatingValue: getLocalNode('javascript.0.klima.' + roomName + 'TargetTemp'),
     heatingNode: 'javascript.0.klima.' + roomName + 'TargetTemp',

@@ -7,7 +7,7 @@ import { BiRadio } from 'react-icons/bi'
 import { FiMonitor } from 'react-icons/fi'
 import { BsList } from 'react-icons/bs'
 
-import useApiStates from './hooks/useApiStates'
+import useNodeStates from './hooks/useNodeStates'
 import useRoomData from './hooks/useRoomData'
 import useOverlay from './hooks/useOverlay'
 
@@ -30,7 +30,6 @@ import FloatGraph from './components/widgets/FloatGraph'
 import CardExtension from './components/CardExtension'
 
 function App() {
-
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
     document.title = 'D // James'
   }
@@ -38,16 +37,12 @@ function App() {
   const {
     localNodes,
     getLocalNode,
-    updateApiNode,
     updateLocalNode,
     loadApiNodeValues,
-  } = useApiStates()
-
-  const { roomData } = useRoomData(
-    getLocalNode,
     updateApiNode,
-    updateLocalNode
-  )
+  } = useNodeStates()
+
+  const { roomData } = useRoomData(getLocalNode, updateApiNode, updateLocalNode)
 
   const {
     overlayStatus,
@@ -63,6 +58,7 @@ function App() {
 
   var interval
   useEffect(() => {
+    //console.log('localNodes ', localNodes)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     interval = setInterval(() => {
       loadApiNodeValues()
@@ -88,12 +84,12 @@ function App() {
   }
 
   function handleRadioClick(roomData) {
-    setOverlayContent(<RadioOverlayMenu roomData={roomData}></RadioOverlayMenu>)
+    setOverlayContent(<RadioOverlayMenu roomData={roomData} />)
     setOverlayStatus(true)
   }
 
   function handleHeatingClick(roomData) {
-    setOverlayContent(<HeatingOverlay roomData={roomData}></HeatingOverlay>)
+    setOverlayContent(<HeatingOverlay roomData={roomData} />)
     setOverlayStatus(true)
   }
 
@@ -118,7 +114,7 @@ function App() {
             >
               {overlayContent}
             </Overlay>
-            <Header></Header>
+            <Header />
             <StyledMain>
               <Layout layout="1fr 1fr" desktopLayout="1fr">
                 <div>
@@ -133,7 +129,7 @@ function App() {
                 </div>
               </Layout>
             </StyledMain>
-            <Footer></Footer>
+            <Footer />
           </Route>
           <Route exact path="/klima">
             <Overlay
@@ -160,7 +156,7 @@ function App() {
                 url="http://192.168.178.60:8082/flot/index.html?range=1440&zoom=false&axeX=lines&axeY=inside&hoverDetail=true&aggregate=onchange&chartType=step&live=30&instance=sql.0&l%5B0%5D%5Bid%5D=javascript.0.klima.terasseTemp&l%5B0%5D%5Boffset%5D=0&l%5B0%5D%5Baggregate%5D=minmax&l%5B0%5D%5Bcolor%5D=%23E29804&l%5B0%5D%5Bthickness%5D=3&l%5B0%5D%5Bshadowsize%5D=3&l%5B0%5D%5Binstance%5D=sql.0&l%5B0%5D%5Byaxe%5D=right&l%5B0%5D%5Bxaxe%5D=bottom&l%5B0%5D%5Bname%5D=Au%C3%9Fentemperatur&l%5B0%5D%5Bunit%5D=%C2%B0&l%5B0%5D%5BcommonYAxis%5D=1&l%5B0%5D%5BignoreNull%5D=true&l%5B0%5D%5BafterComma%5D=2&l%5B0%5D%5Bdashes%5D=false&l%5B0%5D%5BdashLength%5D=10&l%5B0%5D%5BspaceLength%5D=10&l%5B0%5D%5Bxticks%5D=1&l%5B0%5D%5Byticks%5D=1&l%5B0%5D%5BchartType%5D=line&aggregateType=step&aggregateSpan=300&relativeEnd=now&timeType=relative&noBorder=noborder&bg=%23242424&useComma=true&noedit=false&animation=300&window_bg=%23242424&x_labels_color=%23fca43c&y_labels_color=%23fca43c&border_color=%23242424&barColor=%23fe7878&barLabels=middle&barWidth=100&barFontSize=100&titlePos=top%3A35%3Bleft%3A65&legend=sw&legColumns=5&legBgOpacity=0.5&timeFormat=%25H%3A%25M"
               />
             </Card>
-            <Footer></Footer>
+            <Footer />
           </Route>
         </Switch>
       </StyledApp>
