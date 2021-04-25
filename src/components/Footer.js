@@ -10,8 +10,8 @@ function handlePopupClick() {
     url,
     'window',
     'toolbar=no, menubar=no, resizable=yes, height=' +
-      window.screen.height +
-      'px, width=500px'
+    window.screen.height +
+    'px, width=500px'
   )
 }
 
@@ -32,7 +32,7 @@ const StyledDiv = styled.div`
   }
   width: 100%;
   text-align: center;
-  margin: 5px 0 20px -10px;
+  margin: 0px 0 20px -10px;
   height: 30px;
   display: flex;
   justify-content: center;

@@ -8,6 +8,8 @@ function CardHead({ roomData, onClick }) {
   function generateInfos(info, roomData) {
     var output = info.value
 
+    //console.log(roomData.name, info)
+
     if (info.type === 'temp') {
       output = parseFloat(output).toFixed(1)
     }

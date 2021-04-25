@@ -30,7 +30,6 @@ import FloatGraph from './components/widgets/FloatGraph'
 import CardExtension from './components/CardExtension'
 
 function App() {
-
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
     document.title = 'D // James'
   }
@@ -43,11 +42,7 @@ function App() {
     updateApiNode,
   } = useNodeStates()
 
-  const { roomData } = useRoomData(
-    getLocalNode,
-    updateApiNode,
-    updateLocalNode
-  )
+  const { roomData } = useRoomData(getLocalNode, updateApiNode, updateLocalNode)
 
   const {
     overlayStatus,
@@ -63,6 +58,7 @@ function App() {
 
   var interval
   useEffect(() => {
+    //console.log('localNodes ', localNodes)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     interval = setInterval(() => {
       loadApiNodeValues()
@@ -114,7 +110,8 @@ function App() {
           <Route exact path="/">
             <Overlay
               status={overlayStatus}
-              onClick={() => setOverlayStatus(false)}>
+              onClick={() => setOverlayStatus(false)}
+            >
               {overlayContent}
             </Overlay>
             <Header />
@@ -172,7 +169,10 @@ function App() {
   function cardTemplateBasic(roomName) {
     return (
       <Card>
-        <CardHead roomData={roomData[roomName]} onClick={() => toggleExtension(roomName)} />
+        <CardHead
+          roomData={roomData[roomName]}
+          onClick={() => toggleExtension(roomName)}
+        />
         <Layout layout="1fr 15px 1fr">
           <Layout layout="1fr 15px 1fr">
             <SwitchButton
