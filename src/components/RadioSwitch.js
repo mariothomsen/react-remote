@@ -34,7 +34,6 @@ const StyledDiv = styled.div`
 const StyledForm = styled.div`
   background: ${(props) =>
     props.buttonstyle === 'flat' ? 'none' : 'var(--color-primary)'};
-
   font-weight: ${(props) => (props.buttonstyle === 'flat' ? '600' : '200')};
   color: ${(props) => (props.buttonstyle === 'flat' ? 'green' : 'red')};
   width: 100%;

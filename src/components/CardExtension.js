@@ -19,5 +19,11 @@ const StyledDiv = styled.div`
 `
 
 const StyledContent = styled.div`
-  margin-top: 15px;
+  margin: 0 0 0 0;
+  & > div {
+    margin: 20px 0 10px 0;
+  }
 `
+
+// 40
+// '˚

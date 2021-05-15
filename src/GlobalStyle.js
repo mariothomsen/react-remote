@@ -26,6 +26,7 @@ export default createGlobalStyle`
     background-color: black;
     padding: 0;
     margin: 0;
+    user-select: none;
   }
 
   input, textarea, button {

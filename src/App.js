@@ -26,6 +26,8 @@ import RadioOverlayMenu from './components/widgets/RadioOverlayMenu'
 import HeatingOverlay from './components/widgets/HeatingOverlay'
 import VolumneSlider from './components/widgets/VolumneSlider'
 import FloatGraph from './components/widgets/FloatGraph'
+import SettingPlusMinus from './components/widgets/SettingPlusMinus'
+import SettingOnOff from './components/widgets/SettingOnOff'
 
 import CardExtension from './components/CardExtension'
 
@@ -44,12 +46,8 @@ function App() {
 
   const { roomData } = useRoomData(getLocalNode, updateApiNode, updateLocalNode)
 
-  const {
-    overlayStatus,
-    setOverlayStatus,
-    overlayContent,
-    setOverlayContent,
-  } = useOverlay()
+  const { overlayStatus, setOverlayStatus, overlayContent, setOverlayContent } =
+    useOverlay()
 
   useEffect(() => {
     loadApiNodeValues()
@@ -199,61 +197,9 @@ function App() {
         ></VolumneSlider>
         <CardExtension
           extended={extensionState[roomName]}
-          expandedHeight="50px"
+          expandedHeight="40px"
         >
-          <Setting roomData={roomData[roomName]} />
-        </CardExtension>
-      </Card>
-    )
-  }
-
-  /* WOHNUNG CARD */
-  function cardTemplateWhg(roomName) {
-    return (
-      <Card>
-        <CardHead
-          roomData={roomData[roomName]}
-          onClick={() => toggleExtension(roomName)}
-        />
-        <Layout layout="1fr 15px 1fr 15px 1fr ">
-          <SwitchButton
-            onClick={() => handleRadioClick(roomData['wohnung'])}
-            value={roomData['wohnung'].radioValue}
-            children={
-              <>
-                <BiRadio size="15" />
-                <span>Wohnung</span>
-              </>
-            }
-          />
-          <div></div>
-          <SwitchButton
-            onClick={() => handleRadioClick(roomData['südflügel'])}
-            value={roomData['südflügel'].radioValue}
-            children={
-              <>
-                <BiRadio size="15" />
-                <span>Südflügel</span>
-              </>
-            }
-          />
-          <div></div>
-          <DropDownButton
-            onClick={handleDropDownClick}
-            menu={roomData[roomName].ddmenu}
-            children={
-              <>
-                <BsList size="15" />
-                <span>Szenen</span>
-              </>
-            }
-          />
-        </Layout>
-        <CardExtension
-          extended={extensionState[roomName]}
-          expandedHeight="100px"
-        >
-          <Setting roomData={roomData[roomName]} />
+          <SettingOnOff data={roomData[roomName].settingAutoLights} />
         </CardExtension>
       </Card>
     )
@@ -303,9 +249,63 @@ function App() {
         ></VolumneSlider>
         <CardExtension
           extended={extensionState[roomName]}
-          expandedHeight="50px"
+          expandedHeight="40px"
         >
-          <Setting roomData={roomData[roomName]} />
+          <SettingOnOff data={roomData[roomName].settingAutoLights} />
+        </CardExtension>
+      </Card>
+    )
+  }
+
+  /* WOHNUNG CARD */
+  function cardTemplateWhg(roomName) {
+    return (
+      <Card>
+        <CardHead
+          roomData={roomData[roomName]}
+          onClick={() => toggleExtension(roomName)}
+        />
+        <Layout layout="1fr 15px 1fr 15px 1fr ">
+          <SwitchButton
+            onClick={() => handleRadioClick(roomData['wohnung'])}
+            value={roomData['wohnung'].radioValue}
+            children={
+              <>
+                <BiRadio size="15" />
+                <span>Wohnung</span>
+              </>
+            }
+          />
+          <div></div>
+          <SwitchButton
+            onClick={() => handleRadioClick(roomData['südflügel'])}
+            value={roomData['südflügel'].radioValue}
+            children={
+              <>
+                <BiRadio size="15" />
+                <span>Südflügel</span>
+              </>
+            }
+          />
+          <div></div>
+          <DropDownButton
+            onClick={handleDropDownClick}
+            menu={roomData[roomName].ddmenu}
+            children={
+              <>
+                <BsList size="15" />
+                <span>Szenen</span>
+              </>
+            }
+          />
+        </Layout>
+        <CardExtension
+          extended={extensionState[roomName]}
+          expandedHeight="135px"
+        >
+          <SettingOnOff data={roomData[roomName].settingAutoRadio} />
+          <SettingOnOff data={roomData[roomName].settingAutoHeating} />
+          <SettingPlusMinus data={roomData[roomName].settingNormTemp} />
         </CardExtension>
       </Card>
     )
