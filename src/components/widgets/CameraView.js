@@ -7,14 +7,13 @@ export default function CameraView({ url, headline, extended }) {
   }
   return (
     <StyledDiv>
-      {/* <iframe src={url} title={headline} seamless="">
+      <iframe src={url} title={headline} seamless="">
         <p>
           Ihr Browser kann leider keine eingebetteten Frames anzeigen: Sie
           können die eingebettete Seite über den folgenden Verweis aufrufen:
           <a href="https://wiki.selfhtml.org/wiki/Startseite">SELFHTML</a>
         </p>
-      </iframe> */}
-      <img src="http://192.168.178.56:8081/"></img>
+      </iframe>
       <StyledFullscreenButton>
         <BiFullscreen onClick={handleFullscreenClick} size="30"></BiFullscreen>
       </StyledFullscreenButton>
