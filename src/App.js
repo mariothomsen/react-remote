@@ -28,6 +28,7 @@ import VolumneSlider from './components/widgets/VolumneSlider'
 import FloatGraph from './components/widgets/FloatGraph'
 import SettingPlusMinus from './components/widgets/SettingPlusMinus'
 import SettingOnOff from './components/widgets/SettingOnOff'
+import CameraView from './components/widgets/CameraView'
 
 import CardExtension from './components/CardExtension'
 
@@ -117,7 +118,7 @@ function App() {
               <Layout layout="1fr 1fr" desktopLayout="1fr">
                 <div>
                   {cardTemplateWhg('wohnung')}
-                  {cardTemplateBasic('büro')}
+                  {cardTemplateBo()}
                   {cardTemplateWhz('wohnzimmer')}
                 </div>
                 <div>
@@ -200,6 +201,50 @@ function App() {
           expandedHeight="40px"
         >
           <SettingOnOff data={roomData[roomName].settingAutoLights} />
+        </CardExtension>
+      </Card>
+    )
+  }
+
+  /* Büüro CARD */
+  function cardTemplateBo() {
+    return (
+      <Card>
+        <CardHead
+          roomData={roomData['büro']}
+          onClick={() => toggleExtension('büro')}
+        />
+        <Layout layout="1fr 15px 1fr">
+          <Layout layout="1fr 15px 1fr">
+            <SwitchButton
+              onClick={() => handleRadioClick(roomData['büro'])}
+              value={roomData['büro'].radioValue}
+              children={<BiRadio size="15" />}
+            />
+            <div></div>
+            <SwitchButton
+              onClick={() => handleHeatingClick(roomData['büro'])}
+              value={false}
+              children={<RiTempColdLine size="15" />}
+            />
+          </Layout>
+          <div></div>
+          <LightWidget roomData={roomData['büro']} />
+        </Layout>
+        <VolumneSlider
+          onChange={roomData['büro']}
+          min="0"
+          max="100"
+          step="10"
+          roomData={roomData['büro']}
+        ></VolumneSlider>
+        <CardExtension extended={extensionState['büro']} expandedHeight="400px">
+          <SettingOnOff data={roomData['büro'].settingAutoLights} />
+          <CameraView
+            extended={extensionState['büro']}
+            headline="AntsTV"
+            url="http://192.168.178.56:8081/"
+          />
         </CardExtension>
       </Card>
     )
