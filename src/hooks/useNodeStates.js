@@ -1,6 +1,6 @@
 import setApiNodeValue from '../services/setApiNodeValue'
 import getApiNodeValues from '../services/getApiNodeValues'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import exampleResponse from '../data/exampleResponse.json'
 export default function useNodeStates() {
   const [localNodes, setLocalNodes] = useState([])
@@ -59,7 +59,6 @@ export default function useNodeStates() {
   /********************************************** */
 
   function loadApiNodeValues() {
-
     const echos = {
       wohnung: 'b3facf1955ff465cb9a1581c8b15f6fd',
       südflügel: 'f4cf13c2be114f4fa0ff7a0a9e9530ac',
@@ -119,8 +118,8 @@ export default function useNodeStates() {
       'alexa2.0.Echo-Devices.' + echos['schlafzimmer'] + '.Player.volume',
       'alexa2.0.Echo-Devices.' + echos['schlafzimmer'] + '.Player.currentState',
       'alexa2.0.Echo-Devices.' +
-      echos['schlafzimmer'] +
-      '.Player.currentArtist',
+        echos['schlafzimmer'] +
+        '.Player.currentArtist',
       /* Wohnzimmer */
       'javascript.0.klima.wohnzimmerTemp',
       'javascript.0.klima.wohnzimmerTargetTemp',
@@ -144,6 +143,7 @@ export default function useNodeStates() {
       'javascript.0.statusInfos.tempInnen',
       'javascript.0.klima.autoMode',
       'javascript.0.settings.radio.automatic',
+      'javascript.0.klima.autoNormTemp',
     ]
     let urlPart = ''
     nodes.forEach((node) => {

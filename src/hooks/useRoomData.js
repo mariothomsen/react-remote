@@ -172,13 +172,11 @@ export default function useRoomConfig(
     lightNode: 'javascript.0.lights.' + roomName + '.current',
     lightWidgetLayout: '2fr 1fr',
     lightMenu: basicLightMenu(roomName),
-    settings: [
-      {
-        node: 'javascript.0.lights.' + roomName + '.autoMode',
-        value: getLocalNode('javascript.0.lights.' + roomName + '.autoMode'),
-        text: 'Autom. Licht',
-      },
-    ],
+    settingAutoLights: {
+      node: 'javascript.0.lights.' + roomName + '.autoMode',
+      value: getLocalNode('javascript.0.lights.' + roomName + '.autoMode'),
+      text: 'Automatisches Licht',
+    },
     volumneValue: getLocalNode(
       'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume'
     ),
@@ -243,13 +241,11 @@ export default function useRoomConfig(
         targetState: roomName + '.6',
       },
     ],
-    settings: [
-      {
-        node: 'javascript.0.lights.' + roomName + '.autoMode',
-        value: getLocalNode('javascript.0.lights.' + roomName + '.autoMode'),
-        text: 'Autom. Licht',
-      },
-    ],
+    settingAutoLights: {
+      node: 'javascript.0.lights.' + roomName + '.autoMode',
+      value: getLocalNode('javascript.0.lights.' + roomName + '.autoMode'),
+      text: 'Automatisches Licht',
+    },
     volumneValue: getLocalNode(
       'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume'
     ),
@@ -322,20 +318,20 @@ export default function useRoomConfig(
     ddmenu: [
       {
         node: 'javascript.0.handler.lights',
-        text: 'Scene 1',
-        color: '#ffa10070',
+        text: 'Gute Nacht',
+        color: '#6C5D41',
         targetState: roomName + '.1',
       },
       {
         node: 'javascript.0.handler.lights',
-        text: 'Scene 2',
-        color: 'var(--color-primary)',
+        text: 'Gute Nacht 2',
+        color: '#6C5D41',
         targetState: roomName + '.2',
       },
       {
         node: 'javascript.0.handler.lights',
-        text: 'Scene 3',
-        color: 'var(--color-primary)',
+        text: 'Alles aus',
+        color: '#6C5D41',
         targetState: roomName + '.2',
       },
     ],
@@ -352,18 +348,22 @@ export default function useRoomConfig(
     radioMenu: basicRadioMenu(roomName),
     updateApiNode,
     updateLocalNode,
-    settings: [
-      {
-        node: 'javascript.0.klima.autoMode',
-        value: getLocalNode('javascript.0.klima.autoMode'),
-        text: 'Autom. Heizung',
-      },
-      {
-        node: 'javascript.0.settings.radio.automatic',
-        value: getLocalNode('javascript.0.settings.radio.automatic'),
-        text: 'Autom. Radio',
-      },
-    ],
+    settingAutoHeating: {
+      node: 'javascript.0.klima.autoMode',
+      value: getLocalNode('javascript.0.klima.autoMode'),
+      text: 'Automatische Heizung',
+    },
+    settingAutoRadio: {
+      node: 'javascript.0.settings.radio.automatic',
+      value: getLocalNode('javascript.0.settings.radio.automatic'),
+      text: 'Automatisches Radio',
+    },
+    settingNormTemp: {
+      node: 'javascript.0.klima.autoNormTemp',
+      value: getLocalNode('javascript.0.klima.autoNormTemp'),
+      text: 'Heizung Off Temp.',
+      append: '°',
+    },
   }
 
   /************************ SÜDFLÜGEL (custom) *************************/
@@ -406,13 +406,11 @@ function loadStandardRoomData(
     lightNode: 'javascript.0.lights.' + roomName + '.current',
     lightWidgetLayout: '2fr 1fr',
     lightMenu: basicLightMenu(roomName),
-    settings: [
-      {
-        node: 'javascript.0.lights.' + roomName + '.autoMode',
-        value: getLocalNode('javascript.0.lights.' + roomName + '.autoMode'),
-        text: 'Autom. Licht',
-      },
-    ],
+    settingAutoLights: {
+      node: 'javascript.0.lights.' + roomName + '.autoMode',
+      value: getLocalNode('javascript.0.lights.' + roomName + '.autoMode'),
+      text: 'Automatisches Licht',
+    },
     volumneValue: getLocalNode(
       'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.volume'
     ),
