@@ -3,6 +3,6 @@ export default function getApiStates(urlPart) {
     process.env.REACT_APP_BE_BASE_URL +
     '/get/system.adapter.admin.0.alive' +
     urlPart
-  //console.log(url)
+  console.log(url)
   return fetch(url)
 }

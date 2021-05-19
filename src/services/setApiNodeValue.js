@@ -1,6 +1,6 @@
 export default function setApiNodeValue(node, value) {
   const url =
     process.env.REACT_APP_BE_BASE_URL + '/set/' + node + '?value=' + value
-  console.log(url)
+  //console.log(url)
   fetch(url)
 }
