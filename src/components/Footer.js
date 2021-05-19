@@ -10,8 +10,8 @@ function handlePopupClick() {
     url,
     'window',
     'toolbar=no, menubar=no, resizable=yes, height=' +
-    window.screen.height +
-    'px, width=500px'
+      window.screen.height +
+      'px, width=500px'
   )
 }
 
@@ -28,8 +28,6 @@ function Footer() {
 }
 
 const StyledDiv = styled.div`
-  @media only screen and (min-width: 1000px) {
-  }
   width: 100%;
   text-align: center;
   margin: 0px 0 20px -10px;

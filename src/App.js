@@ -28,7 +28,8 @@ import VolumneSlider from './components/widgets/VolumneSlider'
 import FloatGraph from './components/widgets/FloatGraph'
 import SettingPlusMinus from './components/widgets/SettingPlusMinus'
 import SettingOnOff from './components/widgets/SettingOnOff'
-import CameraView from './components/widgets/CameraView'
+import CamViewSmall from './components/widgets/CamViewSmall'
+import CamViewBig from './components/widgets/CamViewBig'
 
 import CardExtension from './components/CardExtension'
 
@@ -157,6 +158,9 @@ function App() {
             </Card>
             <Footer />
           </Route>
+          <Route exact path="/antstv">
+            <CamViewBig></CamViewBig>
+          </Route>
         </Switch>
       </StyledApp>
     )
@@ -240,8 +244,9 @@ function App() {
         ></VolumneSlider>
         <CardExtension extended={extensionState['büro']} expandedHeight="400px">
           <SettingOnOff data={roomData['büro'].settingAutoLights} />
-          <CameraView
+          <CamViewSmall
             extended={extensionState['büro']}
+            setExtensionState={toggleExtension}
             headline="AntsTV"
             url="http://192.168.178.56:8081/"
           />
@@ -365,9 +370,8 @@ const StyledApp = styled.div`
   align-items: center;
   width: 100%;
   flex-direction: column;
-  @media only screen and (min-width: 1000px) {
-    min-height: 100vh;
-  }
+
+  min-height: 100vh;
 `
 
 const StyledMain = styled.main`
@@ -376,6 +380,7 @@ const StyledMain = styled.main`
   > * {
     margin: 15px;
   }
+
   @media only screen and (min-width: 1000px) {
     max-width: 930px;
     display: flex;
