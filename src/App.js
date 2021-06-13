@@ -351,7 +351,7 @@ function App() {
         </Layout>
         <CardExtension
           extended={extensionState[roomName]}
-          expandedHeight="135px"
+          expandedHeight="300px"
         >
           <SettingOnOff data={roomData[roomName].settingAutoRadio} />
           <SettingOnOff data={roomData[roomName].settingAutoHeating} />

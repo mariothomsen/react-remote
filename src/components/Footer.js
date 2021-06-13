@@ -9,7 +9,7 @@ function handlePopupClick() {
   window.open(
     url,
     'window',
-    'toolbar=no, menubar=no, resizable=yes, height=' +
+    'toolbar=no, menubar=no, location=no, resizable=yes, height=' +
       window.screen.height +
       'px, width=500px'
   )
