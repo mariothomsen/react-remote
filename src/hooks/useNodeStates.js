@@ -120,6 +120,7 @@ export default function useNodeStates() {
       'alexa2.0.Echo-Devices.' +
         echos['schlafzimmer'] +
         '.Player.currentArtist',
+      'javascript.0.infos.timer.nextTimer',
       /* Wohnzimmer */
       'javascript.0.klima.wohnzimmerTemp',
       'javascript.0.klima.wohnzimmerTargetTemp',

@@ -425,6 +425,10 @@ function loadStandardRoomData(
     heatingValue: getLocalNode('javascript.0.klima.' + roomName + 'TargetTemp'),
     heatingNode: 'javascript.0.klima.' + roomName + 'TargetTemp',
     heatingHandler: 'javascript.0.handler.heating',
+    settingTimer: {
+      value: getLocalNode('javascript.0.infos.timer.nextTimer'),
+      text: 'Nächster Timer',
+    },
     updateApiNode,
     updateLocalNode,
   }

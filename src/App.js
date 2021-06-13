@@ -27,6 +27,7 @@ import HeatingOverlay from './components/widgets/HeatingOverlay'
 import VolumneSlider from './components/widgets/VolumneSlider'
 import FloatGraph from './components/widgets/FloatGraph'
 import SettingPlusMinus from './components/widgets/SettingPlusMinus'
+import SettingInfo from './components/widgets/SettingInfo'
 import SettingOnOff from './components/widgets/SettingOnOff'
 import CamViewSmall from './components/widgets/CamViewSmall'
 import CamViewBig from './components/widgets/CamViewBig'
@@ -123,7 +124,7 @@ function App() {
                   {cardTemplateWhz('wohnzimmer')}
                 </div>
                 <div>
-                  {cardTemplateBasic('küche')}
+                  {cardTemplateKitchen('küche')}
                   {cardTemplateBasic('badezimmer')}
                   {cardTemplateBasic('schlafzimmer')}
                 </div>
@@ -205,6 +206,49 @@ function App() {
           expandedHeight="40px"
         >
           <SettingOnOff data={roomData[roomName].settingAutoLights} />
+        </CardExtension>
+      </Card>
+    )
+  }
+
+  /* KITCHEN CARD */
+  function cardTemplateKitchen(roomName) {
+    return (
+      <Card>
+        <CardHead
+          roomData={roomData[roomName]}
+          onClick={() => toggleExtension(roomName)}
+        />
+        <Layout layout="1fr 15px 1fr">
+          <Layout layout="1fr 15px 1fr">
+            <SwitchButton
+              onClick={() => handleRadioClick(roomData[roomName])}
+              value={roomData[roomName].radioValue}
+              children={<BiRadio size="15" />}
+            />
+            <div></div>
+            <SwitchButton
+              onClick={() => handleHeatingClick(roomData[roomName])}
+              value={false}
+              children={<RiTempColdLine size="15" />}
+            />
+          </Layout>
+          <div></div>
+          <LightWidget roomData={roomData[roomName]} />
+        </Layout>
+        <VolumneSlider
+          onChange={roomData[roomName]}
+          min="0"
+          max="100"
+          step="10"
+          roomData={roomData[roomName]}
+        ></VolumneSlider>
+        <CardExtension
+          extended={extensionState[roomName]}
+          expandedHeight="80px"
+        >
+          <SettingOnOff data={roomData[roomName].settingAutoLights} />
+          <SettingInfo data={roomData[roomName].settingTimer} />
         </CardExtension>
       </Card>
     )
