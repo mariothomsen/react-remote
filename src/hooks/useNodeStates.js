@@ -145,6 +145,7 @@ export default function useNodeStates() {
       'javascript.0.klima.autoMode',
       'javascript.0.settings.radio.automatic',
       'javascript.0.klima.autoNormTemp',
+      'hm-rpc.0.00155D89919D99.1.STATE',
     ]
     let urlPart = ''
     nodes.forEach((node) => {

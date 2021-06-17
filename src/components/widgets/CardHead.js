@@ -30,6 +30,18 @@ function CardHead({ roomData, onClick }) {
         return null
       }
     }
+    if (info.type === 'window2') {
+      if (info.value) {
+        return (
+          <>
+            <FaUnlockAlt color="red" size="8" /> <span>Flurfenster offen</span>{' '}
+            {info.append}
+          </>
+        )
+      } else {
+        return null
+      }
+    }
 
     if (info.type === 'currentPlaying') {
       if (!roomData.radioValue) {
