@@ -100,7 +100,7 @@ const basicCardHeadInfos = (roomName, getLocalNode) => [
     ),
     type: 'window',
     prepand: ' ',
-    append: '\u00A0|',
+    append: '\u00A0| \u00A0',
   },
   {
     value: getLocalNode(
@@ -285,6 +285,12 @@ export default function useRoomConfig(
     name: roomName,
     infos: [
       {
+        value: getLocalNode('hm-rpc.0.00155D89919D99.1.STATE'),
+        type: 'window2',
+        prepand: ' ',
+        append: '\u00A0| \u00A0',
+      },
+      {
         value: getLocalNode(
           'alexa2.0.Echo-Devices.' + echos[roomName] + '.Player.currentArtist'
         ),
@@ -425,6 +431,10 @@ function loadStandardRoomData(
     heatingValue: getLocalNode('javascript.0.klima.' + roomName + 'TargetTemp'),
     heatingNode: 'javascript.0.klima.' + roomName + 'TargetTemp',
     heatingHandler: 'javascript.0.handler.heating',
+    settingTimer: {
+      value: getLocalNode('javascript.0.infos.timer.nextTimer'),
+      text: 'Nächster Timer',
+    },
     updateApiNode,
     updateLocalNode,
   }
