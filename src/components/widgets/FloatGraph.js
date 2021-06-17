@@ -15,6 +15,18 @@ export default function FloatGraph({ url, headline }) {
   )
 }
 const StyledDiv = styled.div`
+  background-color: #242424;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 15px 15px 0px 15px;
+  box-sizing: border-box;
+
+  @media only screen and (min-width: 1000px) {
+    margin: 16px 6px 5px 6px;
+    width: 900px;
+    box-sizing: border-box;
+  }
+
   iframe {
     margin: 20px 0;
     border: none;
