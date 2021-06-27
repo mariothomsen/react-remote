@@ -10,12 +10,13 @@ const StyledDiv = styled.div`
   background-color: #242424;
   border-radius: 10px;
   padding: 15px;
-  margin: 0 0 10px 0;
-  box-sizing: border-box;
-
-  @media only screen and (min-width: 1000px) {
-    margin: 16px 6px 5px 6px;
-    width: 450px;
+  margin: 0px 0px 15px 15px;
+  @media only screen and (min-width: 800px) {
+    width: 400px;
     box-sizing: border-box;
   }
 `
+/*
+    
+
+*/

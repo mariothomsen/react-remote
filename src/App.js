@@ -95,9 +95,12 @@ function App() {
   }
 
   function handleTVClick(roomData) {
-    roomData.tvState
-      ? updateLocalNode(roomData.tvHandler, 'powerOff')
-      : updateLocalNode(roomData.tvHandler, 'powerOn')
+    console.log(roomData.tvState)
+    if (roomData.tvState) {
+      updateApiNode(roomData.tvHandler, 'powerOff')
+    } else {
+      updateApiNode(roomData.tvHandler, 'powerOn')
+    }
   }
 
   function handleDropDownClick(node, value) {
@@ -408,12 +411,10 @@ const StyledApp = styled.div`
 
 const StyledMain = styled.main`
   width: 100%;
-  > * {
-    margin: 15px;
-  }
+  padding-top: 15px;
 
-  @media only screen and (min-width: 1000px) {
-    max-width: 930px;
+  @media only screen and (min-width: 800px) {
+    max-width: 845px;
     display: flex;
     flex-flow: column wrap;
     align-content: space-between;
