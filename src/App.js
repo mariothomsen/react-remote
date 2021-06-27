@@ -410,11 +410,12 @@ const StyledApp = styled.div`
 `
 
 const StyledMain = styled.main`
+  box-sizing: border-box;
   width: 100%;
-  padding-top: 15px;
+  padding: 15px 15px 0 0;
 
-  @media only screen and (min-width: 800px) {
-    max-width: 845px;
+  @media only screen and (min-width: 945px) {
+    max-width: 945px;
     display: flex;
     flex-flow: column wrap;
     align-content: space-between;

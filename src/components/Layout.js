@@ -14,7 +14,7 @@ const StyledDiv = styled.div`
   display: grid;
   grid-template-columns: ${(props) => props.layout};
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 945px) {
     grid-template-columns: ${(props) =>
       props.desktopLayout ? props.desktopLayout : props.layout};
   }
